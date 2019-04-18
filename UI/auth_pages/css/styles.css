@@ -67,10 +67,9 @@ input, .select{
 }
 
 .submit_login input{
-	font-size: 3em;
+	font-size: 1em;
     width: 60px;
     height: 60px;
-    padding-top: 0px;
     border-radius: 50%;
     color: #fff;
     padding-right: 0px;
