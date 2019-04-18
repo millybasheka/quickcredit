@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QuickCredit | Auth</title>
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+</head>
+<body>
+	<div class="app_name">
+		<h2>Quick Credit</h2>
+	</div>
+	<section class="button_actions">
+		<div class="login"><a href="#"><h4>Sign in</h4></a></div>
+		<div class="separator">|</div>
+		<div class="signup"><a href="#"><h4>Sign up</h4></a></div>
+	</section>
+	<div class="card">
+		<h4>
+			<div class="sign_in" active>
+				<form method="POST" action="http://localhost:3000/auth/signin">
+					<div class="telephone">
+						<input type="text" name="email" placeholder="Email"/>
+					</div>
+					<div class="pin_number">
+						<input type="password" name="pin" placeholder="Pin number" />
+					</div>
+					<div class="submit_login">
+						<input id="submit_login" type="submit" name="submit" value="→">
+					</div>
+				</form>
+			</div>
+			<div class="sign_up">
+				<form method="POST" action="http://localhost:3000/auth/signup">
+					<div class="name">
+						<input type="text" name="firstname" placeholder="First name"/>
+					</div>
+					<div class="name">
+						<input type="text" name="lastname" placeholder="Last name"/>
+					</div>
+					<div class="telephone">
+						<input type="text" name="email" placeholder="Email"/>
+					</div>
+					<div class="home_address">
+						<input type="text" name="homeAddress" placeholder="Home Address"/>
+					</div>
+					<div class="work_address">
+						<input type="text" name="workAddress" placeholder="Work Address"/>
+					</div>
+					<div class="pin_number">
+						<input type="password" name="pin" placeholder="Pin number" />
+					</div>
+					<div class="submit">
+						<input type="submit" name="submit" value="SignUp"/>
+					</div>
+				</form>
+			</div>
+		</h4>
+	</div>
+	<script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>
