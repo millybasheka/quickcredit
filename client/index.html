@@ -18,7 +18,7 @@
 		</div>
 		<div class="section loan_type">
 			<ul class="homee list_loantype">
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-1">
 					<div class="loan_type_text">
 						<h5>Refinance Loan</h5>
 					</div>
@@ -29,7 +29,7 @@
 						<h6>Get upto <span class="currency">60000</span><span class="currency_symbol">UGX</span></h6>
 					</div>
 				</li>
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-2">
 					<div class="loan_type_text">
 						<h5>Agriculture Loan</h5>
 					</div>
@@ -40,7 +40,7 @@
 						<h6>Get upto <span class="currency">3000</span><span class="currency_symbol">UGX</span></h6>
 					</div>
 				</li>
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-3">
 					<div class="loan_type_text">
 						<h5>Auto Loan</h5>
 					</div>
@@ -51,7 +51,7 @@
 						<h6>Get upto <span class="currency">45000</span><span class="currency_symbol">UGX</span></h6>
 					</div>
 				</li>
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-4">
 					<div class="loan_type_text">
 						<h5>Mortgage Loan</h5>
 					</div>
@@ -62,7 +62,7 @@
 						<h6>Get upto <span class="currency">60000</span><span class="currency_symbol">UGX</span></h6>
 					</div>
 				</li>
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-5">
 					<div class="loan_type_text">
 						<h5>School Fees Loan</h5>
 					</div>
@@ -73,7 +73,7 @@
 						<h6>Get upto <span class="currency">1000000</span><span class="currency_symbol">UGX</span></h6>
 					</div>
 				</li>
-				<li class="card-loan-type">
+				<li class="card-loan-type" id="card-6">
 					<div class="loan_type_text">
 						<h5>Salary Loan</h5>
 					</div>
@@ -86,13 +86,13 @@
 				</li>
 			</ul>
 		</div>
-		<div class="loan_form">
-			<form method="POST" action="http://localhost:3000/loans">
+		<div class="loan_form" style="">
+			<form method="POST" action="">
 				<div class="user_id">
-					<input id="user_id" type="text" name="LoanId" value="1" hidden/>
+					<input id="user_id" type="text" name="LoanId" value="" hidden/>
 				</div>
 				<div class="user_email">
-					<input type="text" name="usermail" value="elemanhillary@gmail.com" hidden/>
+					<input type="text" name="usermail" value="" hidden/>
 				</div>
 				<div class="loanType">
 					<input id="loanType" type="text" name="loanType" hidden>
