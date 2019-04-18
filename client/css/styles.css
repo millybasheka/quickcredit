@@ -239,3 +239,28 @@ input{
 		min-width: 290px;
 	}
 }
+
+#card-1{
+	background: url('../assets/images/refinance.svg') no-repeat;
+}
+
+#card-2{
+	background: url('../assets/images/agriculture.svg') no-repeat;
+}
+#card-3{
+	background: url('../assets/images/auto.svg') no-repeat;
+}
+#card-4{
+	background: url('../assets/images/mortgage.svg') no-repeat;
+}
+#card-5{
+	background: url('../assets/images/school.svg') no-repeat;
+}
+#card-6{
+	background: url('../assets/images/salary.svg') no-repeat;
+}
+
+#card-1,#card-2,#card-3,#card-4,#card-5,#card-6{
+    background-size: 60px;
+    background-position: 310px 40px;
+}
