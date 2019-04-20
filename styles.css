@@ -2,3 +2,23 @@ body{
 background: url(https://github.com/elemanhillary/QuickCredit/blob/gh-pages/61581d98e54acca.jpg);
   color: #000;
 }
+.intro, .desc, .getStarted{
+  text-align: center;
+}
+
+.intro{
+    font-size: 3em;
+}
+.desc{
+  font-size: 4em;
+}
+.getStarted{
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid black;
+    padding: 10px 30px 10px 30px;
+    border-radius: 9px;
+    box-shadow: 3.5px 6px 0px #000;
+}
+  
+
