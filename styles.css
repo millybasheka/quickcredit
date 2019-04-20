@@ -6,7 +6,7 @@ body{
 background: #0084d7;
   color: #fff;
   text-align: center;
-  -webkit-text-align: center;
+  text-align: -webkit-center;
   font-family: Gsans;
   padding-top:100px;
 }
