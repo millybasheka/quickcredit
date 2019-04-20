@@ -3,7 +3,7 @@
   src: url(./GoogleSans-Regular.ttf);
 }
 body{
-background: url(./61581d98e54acca.jpg);
+background: #0084d7;
   color: #fff;
   text-align: center;
   -webkit-text-align: center;
@@ -30,7 +30,7 @@ a{
   width: 100px;
     text-decoration: none;
     color: inherit;
-    border: 2px solid black;
+    border: 2px solid #fff;
     padding: 10px 30px 10px 30px;
     border-radius: 9px;
     box-shadow: 3.5px 6px 0px #fff;
