@@ -6,6 +6,7 @@ body{
 background: url(./61581d98e54acca.jpg);
   color: #fff;
   text-align: center;
+  -webkit-text-align: center;
   font-family: Gsans
 }
 .intro, .desc{
