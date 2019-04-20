@@ -1,9 +1,9 @@
 body{
 background: url(./61581d98e54acca.jpg);
-  color: #000;
+  color: #fff;
   text-align: center;
 }
-.intro, .desc, .getStarted{
+.intro, .desc{
   text-align: center;
  }
 
@@ -13,14 +13,19 @@ background: url(./61581d98e54acca.jpg);
 .desc{
   font-size: 4em;
 }
+a{
+      text-decoration: none;
+    color: #fff;
+}
 .getStarted{
+  text-align:center;
   width: 100px;
     text-decoration: none;
     color: inherit;
     border: 2px solid black;
     padding: 10px 30px 10px 30px;
     border-radius: 9px;
-    box-shadow: 3.5px 6px 0px #000;
+    box-shadow: 3.5px 6px 0px #fff;
 }
   
 
