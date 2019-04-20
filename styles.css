@@ -1,7 +1,12 @@
+@font-face {
+  font-family: Gsans;
+  src: url(./GoogleSans-Regular.ttf);
+}
 body{
 background: url(./61581d98e54acca.jpg);
   color: #fff;
   text-align: center;
+  font-family: Gsans
 }
 .intro, .desc{
   text-align: center;
