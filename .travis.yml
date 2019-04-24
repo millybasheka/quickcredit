@@ -4,7 +4,8 @@ branches:
   - master
   - development
   - ft-quickcredit-ui-2327175
-
+before_install:
+  - npm install
 # safelist
 branches:
   only:
