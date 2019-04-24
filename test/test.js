@@ -2,7 +2,7 @@
 const fetch = require('node-fetch')
 const chai = require('chai');
 const { expect, assert } = require('chai');
-const { LinkedList, newUser } = require('./v1/crud/crud');
+const { LinkedList, newUser } = require('./v1/crud/crud.js');
 chai.use(require('chai-http'));
 const app = require('./v1/index.js');
 
