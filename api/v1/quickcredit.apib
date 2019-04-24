@@ -1,0 +1,510 @@
+FORMAT: 1A
+HOST: http://localhost:3000/api/v1
+
+# QuickCredit
+A collection on quickcredit node express API
+
+# Auth Signup [/auth/signup]
+
+Creating new user
+## Creating a new User [POST]
++ Attributes
+    + firstname (string, required)
+
+        + Sample: eleman
+    + lastname (string, required)
+
+        + Sample: hillary
+    + email (string, required)
+
+        + Sample: elemanhillary@gmail.com
+    + homeAddress (string, required)
+
+        + Sample: namugongo
+    + workAddress (string, required)
+
+        + Sample: 12
+    + pin (string, required)
+
+        + Sample: 1234
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+
++ Response 201 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:224
+            date:Mon, 22 Apr 2019 21:13:41 GMT
+            etag:W/"e0-PdPvzLTLaha3PNwt+NUmCvZfW38"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000authsignupResponse)
+
+
+    + Body
+
+            {"status":201,"Created":"true","data":{"id":2,"firstname":"eleman","lastname":"hillary","email":"elemanhillary@gmail.com","homeaddress":"namugongo","workaddress":"12","password":"1234","status":"unverified","isAdmin":false}}
+
+
+
+# Auth Signin [/auth/signin]
+Sign in a user
+## Sign in a user with existing credentials [POST]
++ Attributes
+    + email (string, required)
+
+        + Sample: elemanhillary@gmail.com
+    + pin (string, required)
+
+        + Sample: 1234
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:224
+            date:Mon, 22 Apr 2019 21:15:05 GMT
+            etag:W/"e0-gw+tMe3zMDsKLR8CErIRqNkdim8"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000authsigninResponse)
+
+
+    + Body
+
+            {"status":200,"Success":"true","data":{"id":2,"firstname":"eleman","lastname":"hillary","email":"elemanhillary@gmail.com","homeaddress":"namugongo","workaddress":"12","password":"1234","status":"unverified","isAdmin":false}}
+
+
+
+# Loans [/loans]
+User create loan application, (pass user id(given at signup will be loan id), user email and loan type) all are to be in hidden inputs, tenor and amount to be loaned(must not be greater than the loan type maximum amount otherwise filters will grab it) in the request body
+## Create new loan application [POST]
++ Attributes
+    + LoanId (string, required)
+
+        + Sample: 1
+    + usermail (string, required)
+
+        + Sample: elemanhillary@gmail.com
+    + loanType (string, required)
+
+        + Sample: Agriculture Loan
+    + tenor (string, required)
+
+        + Sample: 3
+    + amount (string, required)
+
+        + Sample: 400
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+
++ Response 201 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:264
+            date:Mon, 22 Apr 2019 21:17:53 GMT
+            etag:W/"108-l85ArJJng9hh/pjjqLQEE1gWKXY"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000loansResponse)
+
+
+    + Body
+
+            {"status":201,"Created":"true","data":{"id":2,"user":"elemanhillary@gmail.com","loanType":"Agriculture Loan","createdOn":"Mon, 22 Apr 2019 21:17:53 GMT","status":"pending","tenor":3,"amount":400,"interest":60,"repaid":false,"paymentInstallment":153,"balance":460}}
+
+Get all loan applications
+## Get all loan applications [GET]
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:463
+            date:Mon, 22 Apr 2019 21:18:25 GMT
+            etag:W/"1cf-yJ+5U5pU1o6Dktcw11qPBTTqNoU"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000loansResponse1)
+
+
+    + Body
+
+            {"status":200,"data":[{"id":2,"user":"elemanhillary@gmail.com","loanType":"Agriculture Loan","createdOn":"Mon, 22 Apr 2019 21:17:53 GMT","status":"pending","tenor":3,"amount":400,"interest":60,"repaid":false,"paymentInstallment":153,"balance":460},{"id":1,"user":"admin@admin.co","loanType":"Mortgage Loan","createdOn":"Mon, 22 Apr 2019 21:16:46 GMT","status":"pending","tenor":3,"amount":400,"interest":60,"repaid":false,"paymentInstallment":153,"balance":460}]}
+
+
+
+# Loans  [/loans/1]
+Get Loan application by ID
+## Get loan application by ID [GET]
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:235
+            date:Mon, 22 Apr 2019 21:19:18 GMT
+            etag:W/"eb-da76dzY5iedTH7grrSCoBmdX8+s"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000loans1Response)
+
+
+    + Body
+
+            {"status":200,"data":{"id":1,"user":"admin@admin.co","loanType":"Mortgage Loan","createdOn":"Mon, 22 Apr 2019 21:16:46 GMT","status":"pending","tenor":3,"amount":400,"interest":60,"repaid":false,"paymentInstallment":153,"balance":460}}
+
+# Loan verification [/loans/1/verify]
+verifys a loan, put the verify status into the request body
+## Verify a specific loan application, status should be one of **(approved, rejected, pending)** [PATCH]
++ Attributes
+    + status (string, required)
+
+        + Sample: approved
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:35
+            date:Mon, 22 Apr 2019 21:20:38 GMT
+            etag:W/"23-fgbi4liwnRtGG9ovjujukWHSEp4"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000userselemanhillarygmail.comverifyResponse)
+
+
+    + Body
+
+            {"status":200,"message":"approved"}
+
+
+
+# Users verification [/users/elemanhillary@gmail.com/verify]
+Verify user by email ID
+## Verify user by user email ID [PATCH]
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:35
+            date:Mon, 22 Apr 2019 21:19:49 GMT
+            etag:W/"23-LJevHVTdeaejvFq9XfCziySGayc"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000userselemanhillarygmail.comverifyResponse)
+
+
+    + Body
+
+            {"status":200,"message":"verified"}
+
+
+
+# Loans Repayment [/loans/1/repayment]
+Loan repayment
+## Repay a specific loan by ID [POST]
++ Attributes
+    + amount (string, required)
+
+        + Sample: 153
+
++ Request (application/x-www-form-urlencoded)
+
+
+
+
++ Response 201 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:201
+            date:Mon, 22 Apr 2019 21:20:57 GMT
+            etag:W/"c9-0knPEDo9i3uADhiHqrS9OyEnN1Y"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000loans1repaymentResponse)
+
+
+    + Body
+
+            {"status":201,"Created":"true","data":{"id":1,"loanType":"Agriculture Loan","loanId":2,"createdOn":"Mon, 22 Apr 2019 21:20:57 GMT","amount":400,"monthlyInstallment":153,"paidAmount":152,"balance":308}}
+
+
+## Get loan repayment history by ID [GET]
+Get Loan Repayment by Id
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:184
+            date:Mon, 22 Apr 2019 21:22:30 GMT
+            etag:W/"b8-rJ5xQZ+q6Y2fC9h4LO1JWTMKGpg"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000loans1repaymentResponse1)
+
+
+    + Body
+
+            {"status":200,"data":{"id":1,"loanType":"Agriculture Loan","loanId":2,"createdOn":"Mon, 22 Apr 2019 21:20:57 GMT","amount":400,"monthlyInstallment":153,"paidAmount":152,"balance":308}}
+
+
+
+# Loans [/loans{?status,repaid}]
+Get loans that are repaid and approved
+## Get specific loans that are repaid and approved [GET]
++ Parameters
+    + status (string, required)
+
+        + Sample: approved
+    + repaid (boolean, required)
+
+        + Sample: true
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:248
+            date:Mon, 22 Apr 2019 21:46:10 GMT
+            etag:W/"f8-dymM5OBfBdgBGsU5bq2y8BNSkbo"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000apiv1loansstatusapprovedrepaidtrueResponse)
+
+
+    + Body
+
+            {"status":200,"data":[{"data":{"id":1,"user":"admin@admin.com","loanType":"Agriculture Loan","createdOn":"Mon, 22 Apr 2019 21:45:27 GMT","status":"approved","tenor":3,"amount":400,"interest":60,"repaid":true,"paymentInstallment":153,"balance":0}}]}
+
+
+## Get specific loans that are approved and not fully repaid [GET]
+Get all loans that are approved and not repaid
++ Parameters
+    + status (string, required)
+
+        + Sample: approved
+    + repaid (boolean, required)
+
+        + Sample: false
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:251
+            date:Mon, 22 Apr 2019 21:45:36 GMT
+            etag:W/"fb-Q/9SEzltrjNMZ2adc/FPCMBvOsI"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000apiv1loansstatusapprovedrepaidtrueResponse)
+
+
+    + Body
+
+            {"status":200,"data":[{"data":{"id":1,"user":"admin@admin.com","loanType":"Agriculture Loan","createdOn":"Mon, 22 Apr 2019 21:45:27 GMT","status":"approved","tenor":3,"amount":400,"interest":60,"repaid":false,"paymentInstallment":153,"balance":460}}]}
+
+
+
+# Users [/users]
+
+## Get all users in the data store [GET]
+Gets all users
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+            access-control-allow-origin:*
+            connection:keep-alive
+            content-length:200
+            date:Mon, 22 Apr 2019 21:46:35 GMT
+            etag:W/"c8-qCxiJUMY32eYa586j/SUz3Z1QT0"
+            x-powered-by:Express
+
+    + Attributes (httplocalhost3000apiv1usersResponse)
+
+
+    + Body
+
+            {"status":200,"data":[{"id":1,"firstname":"eleman","lastname":"hillary","email":"admin@admin.com","homeaddress":"namugongo","workaddress":"12","password":"1234","status":"unverified","isAdmin":true}]}
+
+
+
+# Data Structures
+
+## httplocalhost3000authsignupResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `Created` (string, required) 
++ `data` (Data, required) 
+
+
+## Data (object)
+
+
+### Properties
++ `id` (number, required) 
++ `firstname` (string, required) 
++ `lastname` (string, required) 
++ `email` (string, required) 
++ `homeaddress` (string, required) 
++ `workaddress` (string, required) 
++ `password` (string, required) 
++ `status` (string, required) 
++ `isAdmin` (boolean, required) 
+
+
+## httplocalhost3000authsigninResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `Success` (string, required) 
++ `data` (Data, required) 
+
+
+## httplocalhost3000loansResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `Created` (string, required) 
++ `data` (Data2, required) 
+
+
+## Data2 (object)
+
+
+### Properties
++ `id` (number, required) 
++ `user` (string, required) 
++ `loanType` (string, required) 
++ `createdOn` (string, required) 
++ `status` (string, required) 
++ `tenor` (number, required) 
++ `amount` (number, required) 
++ `interest` (number, required) 
++ `repaid` (boolean, required) 
++ `paymentInstallment` (number, required) 
++ `balance` (number, required) 
+
+
+## httplocalhost3000loansResponse1 (object)
+
+
+### Properties
++ `status` (number, required) 
++ `data` (array[Data2], required) 
+
+
+## httplocalhost3000loans1Response (object)
+
+
+### Properties
++ `status` (number, required) 
++ `data` (Data2, required) 
+
+
+## httplocalhost3000userselemanhillarygmail.comverifyResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `message` (string, required) 
+
+
+## httplocalhost3000loans1repaymentResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `Created` (string, required) 
++ `data` (Data5, required) 
+
+
+## Data5 (object)
+
+
+### Properties
++ `id` (number, required) 
++ `loanType` (string, required) 
++ `loanId` (number, required) 
++ `createdOn` (string, required) 
++ `amount` (number, required) 
++ `monthlyInstallment` (number, required) 
++ `paidAmount` (number, required) 
++ `balance` (number, required) 
+
+
+## httplocalhost3000loans1repaymentResponse1 (object)
+
+
+### Properties
++ `status` (number, required) 
++ `data` (Data5, required) 
+
+
+## httplocalhost3000apiv1loansstatusapprovedrepaidtrueResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `data` (array[Data7], required) 
+
+
+## Data7 (object)
+
+
+### Properties
++ `data` (Data2, required) 
+
+
+## httplocalhost3000apiv1usersResponse (object)
+
+
+### Properties
++ `status` (number, required) 
++ `data` (array[Data], required) 
+
