@@ -1,11 +1,11 @@
 # blocklist
 branches:
   except:
-  - legacy
-  - experimental
+  - master
+  - development
+  - ft-quickcredit-ui-2327175
 
 # safelist
 branches:
   only:
-  - master
-  - stable
+  - ft-quickcredit-api-2327175
