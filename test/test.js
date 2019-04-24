@@ -2,9 +2,9 @@
 const fetch = require('node-fetch')
 const chai = require('chai');
 const { expect, assert } = require('chai');
-const { LinkedList, newUser } = require('./v1/crud/crud.js');
+const { LinkedList, newUser } = require('../v1/crud/crud');
 chai.use(require('chai-http'));
-const app = require('./v1/index.js');
+const app = require('../index.js');
 
 describe('Linked List', () => {
   it('Should implement insertUser', () => {
