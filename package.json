@@ -28,6 +28,8 @@
   },
   "scripts": {
     "test": "mocha --timeout 10000",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
     "lint": "eslint ./v1/crud/crud.js",
     "start": "node index.js"
   },
