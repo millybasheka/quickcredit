@@ -279,15 +279,30 @@ describe('QUICKCREDIT TESTING', () => {
       });
     });
   });
-describe('GET /', () => {
+describe('GET /', () => {      
+  describe('API endpoint /api/v1/loans/', () => {
+      it('it should get a loan applications', (done) => {
+        chai.request(app)
+          .get('/api/v1/loans')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data).to.have.property('id');
+            expect(res.body.data).to.have.property('tenor');
+            expect(res.body.data).to.have.property('loanType');
+            expect(res.body.data).to.have.property('createdOn');
+            expect(res.body.data).to.have.property('id').equal(1);
+            done();
+          });
+      });
+    });
       describe('API endpoint /api/v1/loans/:loan_id/repayment', () => {
       it('it should get a repayment history', (done) => {
         chai.request(app)
           .get('/api/v1/loans/1/repayment')
           .end((_err, res) => {
             expect(res.body).to.have.status(200);
-            expect(res.body).to.have.property('id');
-            expect(res.body).to.have.property('id').equal(1);
+            expect(res.body.data).to.have.property('id');
+            expect(res.body.data).to.have.property('id').equal(1);
             done();
           });
       });
