@@ -224,7 +224,7 @@ describe('QUICKCREDIT TESTING', () => {
           status: "approved",
         };
         chai.request(app)
-          .patch('/api/v1/loans/:loan_id')
+          .patch('/api/v1/loans/1')
           .send(verify)
           .end((_err, res) => {
             expect(res.body).to.have.status(200);
