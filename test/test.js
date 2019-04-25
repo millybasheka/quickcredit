@@ -2,9 +2,9 @@
 const fetch = require('node-fetch')
 const chai = require('chai');
 const { expect, assert } = require('chai');
-const { LinkedList, newUser } = require('./v1/crud/crud');
+const { LinkedList, newUser } = require('../v1/crud/crud');
 chai.use(require('chai-http'));
-const app = require('./v1/index.js');
+const app = require('../index.js');
 
 describe('Linked List', () => {
   it('Should implement insertUser', () => {
@@ -218,6 +218,22 @@ describe('QUICKCREDIT TESTING', () => {
           });
       });
     });
+    describe('PATCH API endpoint /api/v1/loans/:loan_id', () => {
+      it('it should verify a loan', (done) => {
+        const verify = {
+          status: "approved",
+        };
+        chai.request(app)
+          .patch('/api/v1/loans/1')
+          .send(verify)
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body).to.have.property('message');
+            expect(res.body).to.have.property('message').equal('approved');
+            done();
+          });
+      });
+    });
     describe('API endpoint /api/v1/loans/:loan_id/repayment', () => {
       it('it should make a repayment to a specified loan', (done) => {
         const paidAmount = {
@@ -263,4 +279,74 @@ describe('QUICKCREDIT TESTING', () => {
       });
     });
   });
+describe('GET /', () => {      
+  describe('API endpoint /api/v1/loans/', () => {
+      it('it should get a loan applications', (done) => {
+        chai.request(app)
+          .get('/api/v1/loans')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data[0]).to.have.property('id');
+            expect(res.body.data[0]).to.have.property('tenor');
+            expect(res.body.data[0]).to.have.property('loanType');
+            expect(res.body.data[0]).to.have.property('createdOn');
+            expect(res.body.data[0]).to.have.property('id').equal(1);
+            done();
+          });
+      });
+    });
+        describe('API endpoint /api/v1/loans/:loan_id/', () => {
+      it('it should get a a specific loan application', (done) => {
+        chai.request(app)
+          .get('/api/v1/loans/1')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data).to.have.property('id');
+            expect(res.body.data).to.have.property('id').equal(1);
+            done();
+          });
+      });
+    });
+      describe('API endpoint /api/v1/loans/:loan_id/repayment', () => {
+      it('it should get a repayment history', (done) => {
+        chai.request(app)
+          .get('/api/v1/loans/1/repayment')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data).to.have.property('id');
+            expect(res.body.data).to.have.property('id').equal(1);
+            done();
+          });
+      });
+    });
+        describe('API endpoint /api/v1/users', () => {
+      it('it should get all users', (done) => {
+        chai.request(app)
+          .get('/api/v1/users')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data[0]).to.have.property('id');
+            expect(res.body.data[0]).to.have.property('id').equal(1);
+            expect(res.body.data[0]).to.have.property('email');
+            expect(res.body.data[0]).to.have.property('email').equal('elemanhillary@gmail.com');
+            done();
+          });
+      });
+    });
+         describe('API endpoint /api/v1/loans?status=approved&repaid=false', () => {
+      it('it should get all loans approved and not repaid', (done) => {
+        chai.request(app)
+          .get('/api/v1/users')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data[0]).to.have.property('id');
+            expect(res.body.data[0]).to.have.property('id').equal(1);
+            expect(res.body.data[0]).to.have.property('email');
+            expect(res.body.data[0]).to.have.property('email').equal('elemanhillary@gmail.com');
+            done();
+          });
+      });
+    });
+ 
+});
 });
