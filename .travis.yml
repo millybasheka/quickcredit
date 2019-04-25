@@ -1,1 +1,10 @@
-
+# blocklist
+branches:
+  except:
+  - master
+  - development
+  - ft-quickcredit-ui-2327175
+# safelist
+branches:
+  only:
+  - ft-quickcredit-api-2327175
