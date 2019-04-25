@@ -319,5 +319,19 @@ describe('GET /', () => {
           });
       });
     });
+        describe('API endpoint /api/v1/users', () => {
+      it('it should get all users', (done) => {
+        chai.request(app)
+          .get('/api/v1/users')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data[0]).to.have.property('id');
+            expect(res.body.data[0]).to.have.property('id').equal(1);
+            expect(res.body.data[0]).to.have.property('email');
+            expect(res.body.data[0]).to.have.property('email').equal('elemanhillary@gmail.com);
+            done();
+          });
+      });
+    });
 });
 });
