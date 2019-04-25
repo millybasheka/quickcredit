@@ -286,12 +286,24 @@ describe('GET /', () => {
           .get('/api/v1/loans')
           .end((_err, res) => {
             expect(res.body).to.have.status(200);
-            expect(Object.prototype.toString.call(res.body.body)).to.be.equal('[object Array']);
+            expect(Object.prototype.toString.call(res.body.body)).to.be.equal('[object Array]');
             expect(res.body.data[0]).to.have.property('id');
             expect(res.body.data[0]).to.have.property('tenor');
             expect(res.body.data[0]).to.have.property('loanType');
             expect(res.body.data[0]).to.have.property('createdOn');
             expect(res.body.data[0]).to.have.property('id').equal(1);
+            done();
+          });
+      });
+    });
+        describe('API endpoint /api/v1/loans/:loan_id/', () => {
+      it('it should get a a specific loan application', (done) => {
+        chai.request(app)
+          .get('/api/v1/loans/1')
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body.data).to.have.property('id');
+            expect(res.body.data).to.have.property('id').equal(1);
             done();
           });
       });
