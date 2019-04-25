@@ -2,6 +2,8 @@ language: node_js
 node_js: 
   - "stable"
 before_script:
+   - npm install coveralls --save-dev
+   - npm install mocha-lcov-reporter --save-dev
    - npm install 
 cache:
   directories:
