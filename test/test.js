@@ -286,7 +286,6 @@ describe('GET /', () => {
           .get('/api/v1/loans')
           .end((_err, res) => {
             expect(res.body).to.have.status(200);
-            expect(Object.prototype.toString.call(res.body.body)).to.be.equal('[object Array]');
             expect(res.body.data[0]).to.have.property('id');
             expect(res.body.data[0]).to.have.property('tenor');
             expect(res.body.data[0]).to.have.property('loanType');
