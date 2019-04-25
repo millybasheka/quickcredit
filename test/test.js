@@ -218,6 +218,22 @@ describe('QUICKCREDIT TESTING', () => {
           });
       });
     });
+    describe('PATCH API endpoint /api/v1/loans/:loan_id', () => {
+      it('it should verify a loan', (done) => {
+        const verify = {
+          status: "approved",
+        };
+        chai.request(app)
+          patch.('/api/v1/loans/:loan_id')
+          .send(verify)
+          .end((_err, res) => {
+            expect(res.body).to.have.status(200);
+            expect(res.body).to.have.property('message');
+            expect(res.body).to.have.property('message').equal('approved');
+            done();
+          });
+      });
+    });
     describe('API endpoint /api/v1/loans/:loan_id/repayment', () => {
       it('it should make a repayment to a specified loan', (done) => {
         const paidAmount = {
