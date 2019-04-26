@@ -12,9 +12,7 @@ const { loanTypesAmount } = require('../helper/helper');
 let idL = 1;
 const loanApply = (req, res) => {
   /* get LOAN post info from request body */
-  const {
-    usermail, loanType, tenor, amount,
-  } = req.body;
+  const { usermail, loanType, tenor, amount } = req.body;
   const { status, repaid } = req.query;
   if (Object.keys(req.query).length !== 0 && req.method === 'GET') {
     const repaidTrim = repaid.trim();
