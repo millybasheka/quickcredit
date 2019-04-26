@@ -1,6 +1,6 @@
 const express = require('express');
 const adminController = require('../controllers/admin');
-const { loanApply } = require('../controllers/loan');
+const loanController = require('../controllers/loan');
 
 const router = express.Router();
 /**
@@ -29,7 +29,7 @@ router.get('/loans/:id', adminController.getLoanApp);
    * Admin can view all specific loan
    *
    */
-router.get('/loans', loanApply);
+router.get('/loans', loanController.getAll);
 
 /**
   *

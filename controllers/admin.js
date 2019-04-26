@@ -1,4 +1,5 @@
 const { newUser, newApplication } = require('../helper/util');
+const { loanApproveValidate } = require('../helper/validate');
 
 let id;
 /**
@@ -31,6 +32,13 @@ const verify = (req, res) => {
  *
 /* verify loan */
 const verifyLoan = (req, res) => {
+  const { error } = loanApproveValidate(req.body);
+  if (error) {
+    return res.status(422).json({
+      status: 422,
+      message: error.details[0].message,
+    });
+  }
   const idLoan = req.params.id;
   const { status } = req.body;
   const { bool } = newApplication.verifyLoan(parseInt(idLoan, 10), status);

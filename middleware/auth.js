@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../helper/config');
 
 // eslint-disable-next-line consistent-return
-let checkToken = (req, res, next) => {
-  let token = req.headers['x-access-token'] || req.headers['authorization']; 
+const checkToken = (req, res, next) => {
+  let token = req.headers['authorization'] || req.headers['x-access-token']; 
   if (token.startsWith('Bearer ')) {
     // Remove Bearer from string
     token = token.slice(7, token.length);

@@ -1,5 +1,5 @@
 const { genToken } = require('../helper/helper');
-const { isRequestValid } = require('../helper/validate');
+const { validateSignUp, validateLogin } = require('../helper/validate');
 const { newUser } = require('../helper/util');
 const { hashPassword, comparePassword } = require('../helper/helper');
 
@@ -13,23 +13,18 @@ let id = 1;
 let data;
 const signup = (req, res) => {
   /* get user post info from request body */
+  const { error } = validateSignUp(req.body);
+  if (error) {
+    return res.status(422).json({
+      status: 422,
+      message: error.details[0].message,
+    });
+  }
   const {
     firstname, lastname, email, homeAddress, workAddress, pin,
   } = req.body;
  
   let isAdmin = false;
-  /* check if all fields all not empty */
-  if (firstname === '' || lastname === '' || email === '' || homeAddress === ''
-  || workAddress === '' || pin === '') {
-    res.status(404).json({ status: 404, error: 'all fields must not be empty' });
-    return;
-  }
-
-  /* if password is less than 4 emit error */
-  if (pin.length < 6) {
-    res.status(404).json({ status: 404, error: 'password is short(must be greater than six characters)' });
-    return;
-  }
   const hashedPassword = hashPassword(pin);
   /* checks if email contains string 'admin' and if its at the beginning,
     /* the flag isAdmin is toggled on. though its vulnerable a use can do
@@ -67,6 +62,13 @@ const signup = (req, res) => {
  * user signin */
 const signin = (req, res) => {
   /* get creds from req.body its an object */
+  const { error } = validateLogin(req.body);
+  if (error) {
+    return res.status(422).json({
+      status: 422,
+      message: error.details[0].message,
+    });
+  }
   const { email, pin } = req.body;
   const cp = comparePassword(newUser.head.data.password, pin)
   const result = Object.assign(newUser.checkEmail(email));

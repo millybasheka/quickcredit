@@ -1,5 +1,5 @@
 /* eslint-disable no-else-return */
-const { loanTypeAndLoanAmountChecker } = require('../helper/validate');
+const { validateLoan, loanTypeAndLoanAmountChecker } = require('../helper/validate');
 const { newUser, newApplication, newRepayment } = require('../helper/util');
 const { loanTypesAmount } = require('../helper/helper');
 
@@ -12,9 +12,52 @@ const { loanTypesAmount } = require('../helper/helper');
 let idL = 1;
 const loanApply = (req, res) => {
   /* get LOAN post info from request body */
+  const { error } = validateLoan(req.body);
+  if (error) {
+    return res.status(422).json({
+      status: 422,
+      message: error.details[0].message,
+    });
+  }
+
   const {
     usermail, loanType, tenor, amount,
   } = req.body;
+
+  if (!Object.keys(loanTypesAmount).includes(loanType)) {
+    res.status(404).json({ status: 404, error: `Loan Type must be one of ${Object.keys(loanTypesAmount)}` });
+    return;
+  }
+  if (!newUser.checkEmail(usermail).bool) {
+    res.status(404).json({ status: 404, error: 'You must be a user to apply loan' });
+    return;
+  }
+
+  const { boolL } = newApplication.LcheckEmail(usermail);
+  if (boolL) {
+    if (newUser.checkEmail(usermail).bool && newApplication.head.data.repaid === false) {
+      res.status(404).json({ status: 404, error: 'user can only apply loan once or you have unpaid loan' });
+      // eslint-disable-next-line no-useless-return
+      return;
+    } else {
+      loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
+      /* we have to stop further execution with a return statement as without it it would
+      /* generate an error ERR_HTTP_HEADERS_SENT: Cannot set headers after
+      /* they are sent to the client */
+    }
+  } else {
+    loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
+  }
+  idL += 1;
+};
+
+/**
+ *
+ * @param {req} object
+ * @param {res} object
+ *
+ * get loans */
+const getAll = (req, res) => {
   const { status, repaid } = req.query;
   if (Object.keys(req.query).length !== 0 && req.method === 'GET') {
     const repaidTrim = repaid.trim();
@@ -32,48 +75,13 @@ const loanApply = (req, res) => {
     res.status(200).json({ status: 200, data: node});
     return;
   }
-
-  if (req.method === 'GET') {
-    if (newApplication.getSize() === 0) {
-      res.status(404).json({ status: 404, error: 'no content found' });
-      return;
-    } else {
-      res.status(200).json({ status: 200, data: [...newApplication] });
-      return;
-    }
-  }
-
-  if (usermail === '' || loanType === '' || tenor === '' || amount === '') {
-    res.status(404).json({ status: 404, error: 'some field are empty' });
+  
+  if (newApplication.getSize() === 0) {
+    res.status(404).json({ status: 404, error: 'no content found' });
   } else {
-    if (!Object.keys(loanTypesAmount).includes(loanType)) {
-      res.status(404).json({ status: 404, error: `Loan Type must be one of ${Object.keys(loanTypesAmount)}` });
-      return;
-    }
-    if (!newUser.checkEmail(usermail).bool) {
-      res.status(404).json({ status: 404, error: 'You must be a user to apply loan' });
-      return;
-    }
-
-    const { boolL } = newApplication.LcheckEmail(usermail);
-    if (boolL) {
-      if (newUser.checkEmail(usermail).bool && newApplication.head.data.repaid === false) {
-        res.status(404).json({ status: 404, error: 'user can only apply loan once or you have unpaid loan' });
-        // eslint-disable-next-line no-useless-return
-        return;
-      } else {
-        loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
-        idL += 1;
-        /* we have to stop further execution with a return statement as without it it would
-        /* generate an error ERR_HTTP_HEADERS_SENT: Cannot set headers after
-        /* they are sent to the client */
-      }
-    } else {
-      loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
-      idL += 1;
-    }
+    res.status(200).json({ status: 200, data: [...newApplication] });
   }
-};
+}
 /**
  *
  * @param {req} object
@@ -138,5 +146,6 @@ const userRepayHist = (req, res) => {
 module.exports = {
   userRepayHist,
   loanApply,
+  getAll,
   repay,
 };
