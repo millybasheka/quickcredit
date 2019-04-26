@@ -13,6 +13,16 @@ app.use(bodyparser.json());
 
 /**
  *
+ * Docs
+ *
+ */
+app.use(express.static(path.join(__dirname, 'doc')));
+app.get('/ap1/v1/docs', function(req, res) {
+    res.sendFile('index.html');
+});
+
+/**
+ *
  * Home page
  *
  */
