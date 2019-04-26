@@ -38,7 +38,10 @@
     "mocha": "^6.1.4"
   },
   "scripts": {
-    "test": "mocha  ./test"
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha  --timeout 120000 ./test --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "showcoverage": "start ./coverage/index.html"
   },
   "keywords": [],
   "author": "",
