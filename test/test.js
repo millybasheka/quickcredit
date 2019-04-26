@@ -80,7 +80,7 @@ describe('All Routes', () => {
       .post('/api/v1/auth/user/signin')
       .send({ email: 'elemanhillary@gmail.com', pin: '12345' })
       .then((res) => {
-        expect(res.status).to.be.equal(401);
+        expect(res.status).to.be.equal(404);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status');
         done();
