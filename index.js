@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const bodyparser = require('body-parser');
 const users = require('./routes/user');
 const loans = require('./routes/loan');
@@ -17,7 +18,11 @@ app.use(bodyparser.json());
  *
  */
 app.use(express.static(path.join(__dirname, 'doc')));
-app.get('/ap1/v1/docs', function(req, res) {
+
+app.get('/docs', function(req, res) {
+
+app.get('/docs', function(req, res) {
+
     res.sendFile('index.html');
 });
 
