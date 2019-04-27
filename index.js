@@ -17,9 +17,8 @@ app.use(bodyparser.json());
  * Docs
  *
  */
-app.use(express.static('../doc'));
 app.use('/docs', function(req, res) {
-    res.sendFile('index.html');
+    res.sendFile('../docs/index.html');
 });
 
 /**
