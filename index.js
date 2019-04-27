@@ -17,8 +17,8 @@ app.use(bodyparser.json());
  * Docs
  *
  */
-app.use('/docs', function(req, res) {
-    res.sendFile('../docs/index.html');
+app.get('/docs', function(req, res) {
+    res.sendFile(path.join(__dirname + '/doc/index.html'));
 });
 
 /**
