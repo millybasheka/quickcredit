@@ -1,0 +1,265 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background: #0084d7;
+	font-family: sans-serif;
+}
+.app_name{
+	margin: 40px 0px 10px 0px;
+}
+
+.app_name h2{
+	font-weight: bold;
+	color: #fff;
+	font-size: 2.5em;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+.card{
+	background: #fff;
+	padding: 0px 0px 0px 20px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	box-shadow: 0px 0px 9px 2px #0284d794;
+}
+.status h6{
+	color: #000;
+	font-weight: bold;
+}
+.nav_bar{
+	list-style: none;
+	display: inline-flex;
+	padding: 40px 40px 5px 40px;
+	margin: 0px 40px;
+}
+li.tab{
+	margin-right: 50px;
+	cursor: pointer;
+	padding: 5px 10px 5px 10px;
+	border-radius: 6px;
+	box-shadow: 4px 5px 0px 0.2px #0284d7, inset 0px 0.2px 0px 1px #0284d7;
+}
+.border_bottom a{
+	text-decoration: none;
+	color: #0084d7;
+}
+.card-loan-type, .card-history{
+	height: 100px;
+	width: 350px;
+	background: #fff;
+	cursor: pointer;
+	padding: 20px;
+	border-radius: 8px;
+	margin: 0px 30px 20px 0px;
+	box-shadow: 0px 8px 0px 0.2px #9ea1a2d6, inset 0px 0.2px 0px 1px #9ea1a2d6;
+}
+.card-loan-type:active, li.tab:active, .submit_app input:active{
+	box-shadow: none;
+	transition: box-shadow 200ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.section{
+	padding: 50px 200px 0px 200px;
+}
+
+.list_loantype{
+	list-style: none;
+	margin: 0 -16px;
+	padding: 0px;
+	    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+    line-height: normal;
+    margin: 0;
+}
+
+.description_loantype h6, .expected_amount h6{
+	color: #9E9E9E;
+    font-size: .8em;
+    font-weight: initial;
+    margin-top: 8px;
+}
+
+.description_loantype_max h6, .amount h6{
+	color: #9E9E9E;
+    margin-top: 50px;
+}
+
+.loan_form{
+	background: #fff;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border: 2px solid #0084d7;
+	box-shadow: 0px 0px 9px 2px #d6d6d6ba;   
+	position: relative;
+    padding: 40px 60px 40px 60px;
+}
+
+input{
+	margin-bottom: 25px;
+	width: 350px;
+	font-weight: bold;
+	padding: 10px 5px 10px 5px;
+	border: 2px solid #a9a9a9;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+}
+
+.submit_app input{
+	border: 2px solid #0084d7;
+	background: #0084d7;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 4px 5px 0px 0.2px #9E9E9E, inset 0px 0.2px 0px 1px #0284d7;
+}
+/* Desktops and screen with higher res */
+@media(min-width: 1281px){
+
+}
+/* laptops and Desktops */
+@media(min-width: 1025px) and (max-width: 1280px){
+	.section{
+		padding: 20px 0px 0px 0px;
+	}
+	.loan_form{
+		padding-top: 20px;
+	}
+	.description_loantype h6, .expected_amount h6{
+    font-size: .7em;
+}
+}
+/* tables, iPads(portrait) */
+@media(min-width: 768px) and (max-width: 1024){
+	body{
+		overflow: auto;
+	}
+	.card-loan-type{
+		width: 320px !important;
+		margin: 0px 5px 20px 0px !important;
+	}
+	.section{
+		padding: 50px 0px 0px 0px !important;
+	}
+}
+/* tables, iPads(lanscape) */
+@media(min-width: 482px) and (max-width: 767px){
+	body{
+		overflow: auto;
+	}
+	.card{
+		height: 1200px;
+	}
+	.nav_bar{
+		margin: 0px;
+		padding: 30px 0px 0px 30px;
+	}
+	li.tab{
+		margin-right: 20px;
+	}
+	.section{
+		padding: 50px 0px 0px 0px;
+	}
+	.card-loan-type{
+		margin-right: 0px;
+	}
+	.description_loantype h6, .expected_amount h6{
+		font-size: .6em;
+	}
+	input{
+		width: 228px;
+	}
+	.loan_form{
+		padding-left: 20px;
+		padding-right: 20px;
+		display: none;
+		position: absolute;
+		border: none;
+	}
+	#back_button{
+		display: none;
+	}
+	.app_name{
+		margin-top: 20px;
+	}
+	.card-history{
+		min-width: 290px;
+	}
+}
+.repayment_form{
+	margin-top: 100px;
+    padding: 0px 0px 0px 200px;
+}
+#card-1{
+	background: url('../assets/images/refinance.svg') no-repeat;
+}
+
+#card-2{
+	background: url('../assets/images/agriculture.svg') no-repeat;
+}
+#card-3{
+	background: url('../assets/images/auto.svg') no-repeat;
+}
+#card-4{
+	background: url('../assets/images/mortgage.svg') no-repeat;
+}
+#card-5{
+	background: url('../assets/images/school.svg') no-repeat;
+}
+#card-6{
+	background: url('../assets/images/salary.svg') no-repeat;
+}
+
+#card-1,#card-2,#card-3,#card-4,#card-5,#card-6{
+    background-size: 60px;
+    background-position: 310px 40px;
+}
+/* most of the smartPhones */
+@media(min-width: 300px) and (max-width: 480px){
+	body{
+		overflow: auto;
+	}
+	.card{
+		height: 1200px;
+	}
+	.nav_bar{
+		margin: 0px;
+		padding: 30px 0px 0px 30px;
+	}
+	li.tab{
+		margin-right: 20px;
+	}
+	.section{
+		padding: 50px 0px 0px 0px;
+	}
+	.card-loan-type{
+		margin-right: 0px;
+	}
+	.description_loantype h6, .expected_amount h6{
+		font-size: .6em;
+	}
+	input{
+		width: 228px;
+	}
+	.loan_form{
+		padding-left: 20px;
+		padding-right: 20px;
+		display: none;
+		position: absolute;
+		border: none;
+	}
+	#back_button{
+		display: none;
+	}
+	.app_name{
+		margin-top: 20px;
+	}
+	.card-history{
+		min-width: 290px;
+	}
+}

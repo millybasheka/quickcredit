@@ -1,0 +1,143 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background: #0084d7;
+	font-family: sans-serif;
+	overflow: hidden;
+}
+
+.app_name{
+	margin: 20px 0px 10px 0px;
+}
+
+.app_name h2{
+	font-weight: bold;
+	color: #fff;
+	font-size: 2.5em;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+.button_actions{
+	display: flex;
+	margin-bottom: 50px;
+	margin-left:100px;
+}
+.login, .signup{
+	border: 2px solid #fff;
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.login a, .signup a{
+	text-decoration: none;
+	color: #fff;
+}
+.separator{
+	padding: 10px 30px 10px 30px;
+	color: #fff;
+	font-weight: bold;
+}
+.card{
+	height: 1000px;
+	background: #fff;
+	padding-top: 100px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	box-shadow: 0px 0px 9px 2px #0284d794;
+}
+.card h4, .buttons_a{
+	text-align: center;
+}
+input{
+	margin-bottom: 25px;
+	width: 350px;
+	font-weight: bold;
+	background: transparent;
+	color: inherit;
+}
+
+input, .select{
+	padding: 10px 5px 10px 5px;
+	border: 2px solid #a9a9a9;
+	border-radius: 4px;
+}
+
+.submit_login input{
+	font-size: 1em;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: #fff;
+    padding-right: 0px;
+    padding-left: 0px;
+    background: #0084d7;
+    border: none;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0.2px #64B5F6;
+}
+.submit_login input:active, .submit input:active{
+	box-shadow: none;
+	transition: box-shadow 200ms;
+	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.submit input{
+	border: none;
+	width: 100px !important;
+	background: #0084d7;
+	color: #fff;
+	font-weight: bold;
+    box-shadow: 4px 4px 0px 0.2px #64B5F6;
+}
+
+/* Desktops and screen with higher res */
+@media(min-width: 1281px){
+
+}
+/* laptops and Desktops */
+@media(min-width: 1025px) and (max-width: 1280px){
+	.card{
+		padding-top: 50px;
+	}
+
+}
+/* tables, iPads(portrait) */
+@media(min-width: 768px) and (max-width: 1024){
+	.button_actions{
+		margin-left: 120px;
+	}
+}
+/* tables, iPads(lanscape) */
+@media(min-width: 401px) and (max-width: 767px){
+	.button_actions{
+		margin-left: 96px !important;
+	}
+	.card{
+		padding-top: 40px !important;
+	}
+}
+/* most of the smartPhones */
+@media(min-width: 320px) and (max-width: 480px){
+	.card{
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 60px;
+		overflow: auto;
+	}
+	input{
+		width: 250px;
+	}
+	.submit_login input{
+		width: 60px;
+	}
+	.button_actions{
+		margin-left: 40px;
+		margin-top: 30px;
+	}
+	.button_actions div{
+		padding: 8px 15px 8px 15px;
+	}
+}

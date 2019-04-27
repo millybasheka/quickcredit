@@ -18,7 +18,11 @@ app.use(bodyparser.json());
  *
  */
 app.use(express.static(path.join(__dirname, 'doc')));
+
 app.get('/docs', function(req, res) {
+
+app.get('/docs', function(req, res) {
+
     res.sendFile('index.html');
 });
 
