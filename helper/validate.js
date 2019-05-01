@@ -11,11 +11,14 @@ let data;
  * @params {args} array
  *
  * check if amount is greater than loan type maximum amount */
+let idL = 1;
 const loanTypeAndLoanAmountChecker = (res, ...args) => {
-  if (parseFloat(args[4]) > parseFloat(loanTypesAmount[args[2]])) {
-    res.status(403).json({ status: 403, error: `maximum loan amount for ${args[2]} is ${loanTypesAmount[args[2]]}` });
+  if (parseFloat(args[3]) > parseFloat(loanTypesAmount[args[1]])) {
+    res.status(403).json({ status: 403, error: `maximum loan amount for ${args[1]} is ${loanTypesAmount[args[1]]}` });
   } else {
-    newApplication.insertLoan(...args);
+    newApplication.insertLoan(idL, ...args);
+    idL += 1;
+    // eslint-disable-next-line prefer-destructuring
     data = newApplication.head.data;
     res.status(201).json({ status: 201, Created: 'true', data });
   }
@@ -33,10 +36,12 @@ const validateSignUp = (user) => {
     email: Joi.string().email().trim().required(),
     workAddress: Joi.string().trim().required(),
     homeAddress: Joi.string().trim().required(),
-    pin: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).trim().min(6).max(30).required(),
+    pin: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).trim().min(6)
+      .max(30)
+      .required(),
   });
   return Joi.validate(user, schema);
-}
+};
 
 
 /**
@@ -48,7 +53,7 @@ const validateLogin = (details) => {
     pin: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).trim().required(),
   });
   return Joi.validate(details, schema);
-}
+};
 
 /**
  *
@@ -56,14 +61,13 @@ const validateLogin = (details) => {
  */
 const validateLoan = (loan) => {
   const schema = Joi.object().keys({
-    usermail: Joi.string().email().trim().required(),
     loanType: Joi.string().trim().required(),
     tenor: Joi.number().integer().min(1).max(12)
       .required(),
     amount: Joi.number().required(),
   });
   return Joi.validate(loan, schema);
-}
+};
 
 /**
  *
@@ -74,7 +78,18 @@ const loanApproveValidate = (user) => {
     status: Joi.string().insensitive().valid('approved', 'rejected').required(),
   });
   return Joi.validate(user, schema);
-}
+};
+
+/**
+ *
+ * @param {user} object
+ */
+const amountValidate = (user) => {
+  const schema = Joi.object().keys({
+    amount: Joi.number().required(),
+  });
+  return Joi.validate(user, schema);
+};
 
 module.exports = {
   validateLoan,
@@ -82,4 +97,5 @@ module.exports = {
   validateSignUp,
   loanApproveValidate,
   loanTypeAndLoanAmountChecker,
+  amountValidate,
 };
