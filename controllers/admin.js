@@ -20,7 +20,7 @@ const getLoanApp = (req, res) => {
  *
 /* verify user */
 const verify = (req, res) => {
-  const email = req.params.email;
+  const { email } = req.params;
   const { bool } = newUser.verifyUser(email);
   if (!bool) res.status(404).json({ status: 404, error: 'not found' });
   else res.status(202).json({ status: 202, message: 'verified' });
@@ -31,6 +31,7 @@ const verify = (req, res) => {
  * @param {res} object
  *
 /* verify loan */
+// eslint-disable-next-line consistent-return
 const verifyLoan = (req, res) => {
   const { error } = loanApproveValidate(req.body);
   if (error) {
