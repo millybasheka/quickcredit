@@ -9,6 +9,9 @@ const loan_id = document.querySelector('.amount input[name = loan]');
 async function getData(url) {
 	const response = await fetch(url, {
 		method: 'GET'
+		headers: new Headers({
+				     'Authorization': localStorage.getItem('token'),
+				     })
 	});
 	return await response.json();
 }
@@ -17,7 +20,9 @@ async function patchLoan(url, status_text) {
 	const response = await fetch(url, {
 		method: 'PATCH',
 		body: new URLSearchParams({ status: status_text }),
-		headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' })
+		headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				     'Authorization': localStorage.getItem('token'),
+				     })
 	});
 	return await response.json();
 }
@@ -30,7 +35,7 @@ async function getLoansDep(url) {
 }
 
 function displayLoans() {
-	getData('http://localhost:3000/api/v1/loans')
+	getData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {
 		if (Object.prototype.toString.call(data.data) === '[object Array]') {
 			helperFunc(data);
@@ -51,7 +56,7 @@ function verifyLoan() {
 			if (e.target.checked) {
 				let loan_id = e.target.parentElement.parentElement.parentElement.parentElement
 					.parentElement.children[0].firstElementChild.textContent;
-				patchLoan(`http://localhost:3000/api/v1/loans/${loan_id}`, 'approved')
+				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'approved')
 				.then(data => {
 					console.error(data)
 				})
@@ -66,7 +71,7 @@ function verifyLoan() {
 			if (e.target.checked) {
 				let loan_id = e.target.parentElement.parentElement.parentElement.parentElement
 				.parentElement.children[0].firstElementChild.textContent;
-				patchLoan(`http://localhost:3000/api/v1/loans/${loan_id}`, 'rejected')
+				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'rejected')
 				.then(data => {
 					console.error(data)
 				})
@@ -79,7 +84,7 @@ function verifyLoan() {
 
 search.onclick = function() {
 	if (approved.checked && repaid.checked) {
-		getLoansDep('http://localhost:3000/api/v1/loans?status=approved&repaid=true')
+		getLoansDep('https://qwikcredit.herokuapp.com/api/v1/loans?status=approved&repaid=true')
 		.then(data => {
 			if(data.status === 404){
 				errors.textContent = data.error.trim();
@@ -94,7 +99,7 @@ search.onclick = function() {
 			console.error(error)
 		})
 	} else if (approved.checked && repaid.checked === false) {
-		getLoansDep('http://localhost:3000/api/v1/loans?status=approved&repaid=false')
+		getLoansDep('https://qwikcredit.herokuapp.com/api/v1/loans?status=approved&repaid=false')
 		.then(data => {
 			console.log(data)
 			if(data.status === 404){
@@ -116,7 +121,7 @@ get_loan.onclick = function(){
 	if (loan_id.value === '') {
 		console.error('no input value')
 	} else {
-		getData(`http://localhost:3000/api/v1/loans/${loan_id.value}`)
+		getData(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id.value}`)
 		.then(data => {
 			if (data.status === 404) {
 				errors.textContent = data.error.trim();
