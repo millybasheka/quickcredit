@@ -1,9 +1,12 @@
+const submit_app = document.querySelector(".submit_app");
 async function postFormData(url) {
 	const formData = new FormData(document.querySelector('.repayment_form form'))
 	const response = await fetch(url, {
 		method: 'POST',
 		body: new URLSearchParams(formData),
-		headers: new Headers({ 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8' })
+		headers: new Headers({ 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				      'Authorization': localStorage.getItem('token')
+				     })
 	});
 	return await response.json();
 };
@@ -15,6 +18,6 @@ function getRepays() {
 	.catch(error => error);
 };
 
-(function(){
-getRepays();
-})();
+submit_app.onclick = function(function(e){
+	getRepays();
+})
