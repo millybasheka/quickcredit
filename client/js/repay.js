@@ -18,6 +18,6 @@ function getRepays() {
 	.catch(error => error);
 };
 
-submit_app.onclick = function(function(e){
+submit_app.onclick = function(e){
 	getRepays();
-})
+};
