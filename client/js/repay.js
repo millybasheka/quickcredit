@@ -1,4 +1,5 @@
 let submit = document.querySelector('.submit_app');
+let amount = document.querySelector('.amount input[name = paidAmount]')
 submit.onclick = (e) => {
 	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
 	.then(data => {
@@ -28,10 +29,9 @@ console.log(data)
 	.catch(error => console.error(error))
 
 	async function postFormData(url) {
-		const formData = new FormData(document.querySelector('.repayment_form form'))
 		const response = await fetch(url, {
 			method: 'POST',
-			body: new URLSearchParams(formData),
+			body: new URLSearchParams({amount: amount.value}),
 			headers: new Headers({
 				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
 				'Authorization': localStorage.getItem('token')
@@ -39,5 +39,5 @@ console.log(data)
 		});
 		return await response.json();
 	}
-
+	document.querySelector('.repayment_form form).reset()
 }
