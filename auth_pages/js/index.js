@@ -76,7 +76,12 @@ submitLogin.onclick = (e) => {
 	postFormData('https://qwikcredit.herokuapp.com/api/v1/auth/signin')
 	.then(data => {
 		if (data.Success) {
-			localStorage.setItem('token', data.token)
+			if ('token' in localStorage) {
+				localStorage.removeItem('token')
+				localStorage.setItem('token', data.token)
+			} else {
+				localStorage.setItem('token', data.token)
+			}
 			if(data.data.isAdmin) {
 				window.location.href = 'https://elemanhillary.github.io/QuickCredit/admin/'
 			} else {
