@@ -39,5 +39,5 @@ console.log(data)
 		});
 		return await response.json();
 	}
-	document.querySelector('.repayment_form form).reset()
+	document.querySelector('.repayment_form form').reset()
 }
