@@ -8,6 +8,7 @@ const success = document.querySelector('.success');
 	let tenor = document.getElementById("tenor");
 	let applyBtn = document.getElementById("apply");
 	let card = document.querySelector(".card");
+	let top, left, width, height = 0;
 	tenor.onblur = (e) => {
 		if (tenor.value > 12) {
 			apply.disabled = true;
@@ -22,17 +23,23 @@ const success = document.querySelector('.success');
 		}
 	}
 	loanForm.onmouseenter = (e) => {
-		loanForm.style.bottom = "220px";
-		loanForm.style.transition = "bottom 800ms .2s";
-		loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
+		loanForm.style.top= `${top}px`;
+		loanForm.style.left= `${left}px`;
+		// loanForm.style.transition = "bottom 800ms .2s";
+		// loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
 	}
-	loanForm.onmouseleave = (e) => {
-		loanForm.style.bottom = "0px"
+	for (let i = 0; i < type.length; i++) {
+		width = type[i].clientWidth;
+		height = type[i].clientHeight;
+		type[i].style.backgroundPosition = `${width - height}px, 0px`;
 	}
 	let img, bi, style;
 	for (let i = 0; i < type.length; i++) {
 		type[i].onclick = (e) => {
-			loanForm.style.bottom = "220px";
+			top = type[i].offsetTop - 20
+			left = type[i].offsetLeft;
+			loanForm.style.top= `${top}px`;
+			loanForm.style.left= `${left}px`;
 			loanForm.style.display = "block"
 			img = type[i];
 			style = img.currentStyle || window.getComputedStyle(img, false)
@@ -40,8 +47,8 @@ const success = document.querySelector('.success');
 			loanForm.style.background = `url(${bi}) no-repeat`;
 			loanForm.style.backgroundColor = "#fff";
 			loanForm.style.backgroundSize = "contain";
-			loanForm.style.transition = "bottom 800ms .2s";
-			loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
+			// loanForm.style.transition = "bottom 800ms .2s";
+			// loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
 			let children = Array.from(type[i].children);
 			let loanType = children[0].textContent.trim();
 			let loanMax = children[2].textContent.split(" ")[2].toString().split("").slice(0, -9).join("");
@@ -49,6 +56,7 @@ const success = document.querySelector('.success');
 		}
 	}
 })();
+
 
 let submit = document.querySelector('.submit_app');
 let data;
