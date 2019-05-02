@@ -55,6 +55,7 @@ let data;
 submit.onclick = (e) => {
 	postFormData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {
+		console.log(data)
 		if (data.status === 201) {
 			success.textContent = 'successfully applied';
 			success.style.display = 'block'
