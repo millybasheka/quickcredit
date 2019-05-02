@@ -53,7 +53,7 @@ const success = document.querySelector('.success');
 let submit = document.querySelector('.submit_app');
 let data;
 submit.onclick = (e) => {
-	postFormData('http://localhost:3000/api/v1/loans')
+	postFormData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {
 		if (data.status === 201) {
 			success.textContent = 'successfully applied';
@@ -90,7 +90,7 @@ submit.onclick = (e) => {
 			body: new URLSearchParams(formData),
 			headers: new Headers({
 				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-				'Authorization': window.location.search.split("=")[1].toString()
+				'Authorization': localStorage.getItem('token')
 			})
 		});
 		return await response.json();
