@@ -6,7 +6,9 @@ function repay(url, email, amount) {
 	const response = await fetch(url, {
 		method: 'POST',
 		body: new URLSearchParams({ amount: amount, email: email }),
-		headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'})
+		headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded',
+				      'Authorization': localStorage.getItem('token'),
+				     })
 	})
 	return response.json();
 };
