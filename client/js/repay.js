@@ -16,21 +16,7 @@ repayBtn.onclick = function(_e) {
 	repay(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`, amount.value)
 	.then(data => {
 		console.log(data);
-		if (data.Success) {
-			console.log('yes')
-		} else if (data.status === 422){
-			errors.textContent = data.message;
-			errors.style.display = 'block'
-			setTimeout(function() {
-				errors.style.display = 'none'
-			}, 1500)			
-		} else {
-			errors.textContent = 'Authentication failed';
-			errors.style.display = 'block'
-			setTimeout(function() {
-				errors.style.display = 'none'
-			}, 1500)
-		}
+		console.log(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
 	})
 	.catch(error => {
 		console.error(error);
