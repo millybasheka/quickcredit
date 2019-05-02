@@ -2,7 +2,7 @@ const email = document.querySelector('.amount input[name = email]');
 const amount = document.querySelector('.amount input[name = paidAmount]');
 const repayBtn = document.querySelector('.submit_app');
 
-function repay(url, email, amount) {
+async function repay(url, email, amount) {
 	const response = await fetch(url, {
 		method: 'POST',
 		body: new URLSearchParams({ amount: amount, email: email }),
@@ -10,7 +10,7 @@ function repay(url, email, amount) {
 				      'Authorization': localStorage.getItem('token'),
 				     })
 	})
-	return response.json();
+	return await response.json();
 };
 
 repayBtn.onclick = function(_e) {
