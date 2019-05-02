@@ -1,5 +1,6 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-else-return */
-const { validateLoan, loanTypeAndLoanAmountChecker } = require('../helper/validate');
+const { validateLoan, loanTypeAndLoanAmountChecker , amountValidate} = require('../helper/validate');
 const { newUser, newApplication, newRepayment } = require('../helper/util');
 const { loanTypesAmount } = require('../helper/helper');
 
@@ -9,7 +10,6 @@ const { loanTypesAmount } = require('../helper/helper');
  * @param {res} object
  *
  * create a loan application */
-let idL = 1;
 const loanApply = (req, res) => {
   /* get LOAN post info from request body */
   const { error } = validateLoan(req.body);
@@ -19,9 +19,9 @@ const loanApply = (req, res) => {
       message: error.details[0].message,
     });
   }
-
+  const usermail = req.decoded.user.trim();
   const {
-    usermail, loanType, tenor, amount,
+    loanType, tenor, amount,
   } = req.body;
 
   if (!Object.keys(loanTypesAmount).includes(loanType)) {
@@ -40,15 +40,11 @@ const loanApply = (req, res) => {
       // eslint-disable-next-line no-useless-return
       return;
     } else {
-      loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
-      /* we have to stop further execution with a return statement as without it it would
-      /* generate an error ERR_HTTP_HEADERS_SENT: Cannot set headers after
-      /* they are sent to the client */
+      loanTypeAndLoanAmountChecker(res, usermail, loanType, tenor, amount);
     }
   } else {
-    loanTypeAndLoanAmountChecker(res, idL, usermail, loanType, tenor, amount);
+    loanTypeAndLoanAmountChecker(res, usermail, loanType, tenor, amount);
   }
-  idL += 1;
 };
 
 /**
@@ -64,24 +60,37 @@ const getAll = (req, res) => {
     let repaidBool;
     if (repaidTrim === 'true') {
       repaidBool = true;
-    } else {
+    } else if (repaidTrim === 'false') {
       repaidBool = false;
     }
-    const { retBool, node } = newApplication.checkLoans(status, repaidBool);
-    if (!retBool) {
-      res.status(404).send({ status: 404, error: 'content not found' });
+    const loans = [...newApplication];
+    let returns = [];
+    if (loans.length !== 0) {
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < loans.length; i++) {
+        if (loans[i].status === status && loans[i].repaid === repaidBool) {
+          returns.push(loans[i]);
+        } else {
+          returns.length = 0;
+        }
+      }
+    }
+    
+    if (returns.length !== 0) {
+      res.status(200).json({ status: 200, data: returns });
+      returns.length = 0;
       return;
     }
-    res.status(200).json({ status: 200, data: node});
+    res.status(404).send({ status: 404, error: 'content not found' });
     return;
   }
-  
+
   if (newApplication.getSize() === 0) {
     res.status(404).json({ status: 404, error: 'no content found' });
   } else {
     res.status(200).json({ status: 200, data: [...newApplication] });
   }
-}
+};
 /**
  *
  * @param {req} object
@@ -90,9 +99,16 @@ const getAll = (req, res) => {
  * repay loan */
 let idRe = 1;
 const repay = (req, res) => {
-  const LoanIdParam = req.params.id;
+  const LoanIdParam = req.params.id || newApplication.LcheckEmail(req.body.email).node.id;
   const LoanId = parseInt(LoanIdParam, 10);
-  const paidAmount = req.body.amount;
+  const paidAmount = parseFloat(req.body.amount);
+  const { error } = amountValidate({amount: paidAmount});
+  if (error) {
+    return res.status(422).json({
+      status: 422,
+      message: error.details[0].message,
+    });
+  }
   const { bool, node } = newApplication.checkCreds(LoanId);
   const { nodeR } = newRepayment.RcheckCreds(LoanId);
   const newAppHead = node;
@@ -101,7 +117,7 @@ const repay = (req, res) => {
     return;
   }
   const dataArray = [idRe, newAppHead.loanType, LoanId, newAppHead.interest,
-    parseFloat(paidAmount), newAppHead.amount, newAppHead.tenor, newAppHead.paymentInstallment];
+    paidAmount, newAppHead.amount, newAppHead.tenor, newAppHead.paymentInstallment];
 
   if (paidAmount > newAppHead.paymentInstallment) {
     res.status(404).json({ status: 404, error: `You are supposed to pay ${newAppHead.paymentInstallment} per month or less than please` });
@@ -111,14 +127,14 @@ const repay = (req, res) => {
   if (bool && node.status === 'approved') {
     if (node.id === LoanId && node.repaid) {
       res.status(404).json({ status: 404, error: 'Loan already fully paid' });
-    } else if (newRepayment.repayOnce(LoanId, parseFloat(paidAmount))) {
+    } else if (newRepayment.repayOnce(LoanId, paidAmount)) {
       node.balance = nodeR.balance;
-      if (nodeR.balance === 0) newApplication.toggleRepay(LoanId);
+      if (nodeR.balance <= 0) newApplication.toggleRepay(LoanId);
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
     } else {
       newRepayment.insertRepay(...dataArray);
       node.balance = newRepayment.balance;
-      if (newRepayment.balance === 0) node.toggleRepay(LoanId);
+      if (newRepayment.balance <= 0) node.toggleRepay(LoanId);
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
       idRe += 1;
     }

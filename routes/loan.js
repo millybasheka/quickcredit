@@ -1,5 +1,6 @@
 const express = require('express');
 const loanController = require('../controllers/loan');
+const { checkToken } = require('../middleware/auth');
 
 const router = express.Router();
 /**
@@ -8,7 +9,7 @@ const router = express.Router();
  *
  */
 
-router.post('/loans', loanController.loanApply);
+router.post('/loans', checkToken, loanController.loanApply);
 
 /**
   *
@@ -16,7 +17,15 @@ router.post('/loans', loanController.loanApply);
   * apply for loan repayment
   *
   */
-router.post('/loans/:id/repayments', loanController.repay);
+router.post('/loans/:id/repayments', checkToken, loanController.repay);
+
+/**
+  *
+  *
+  * apply for loan repayment(admin)
+  *
+  */
+router.post('/loans/repayments', loanController.repay);
 
 
 /**
@@ -26,6 +35,6 @@ router.post('/loans/:id/repayments', loanController.repay);
  *
  */
 
-router.get('/loans/:id/repayments', loanController.userRepayHist);
+router.get('/loans/:id/repayments', checkToken, loanController.userRepayHist);
 
 module.exports = router;

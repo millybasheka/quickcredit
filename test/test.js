@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
-const fetch = require('node-fetch')
 const chai = require('chai');
-const { expect, assert } = require('chai');
+const { expect } = require('chai');
 chai.use(require('chai-http'));
 const app = require('../index.js');
 
+let token;
+let adminToken;
 describe('All Routes', () => {
   it('should signup a user with valid details', (done) => {
     chai.request(app)
@@ -18,6 +19,8 @@ describe('All Routes', () => {
         pin: '123456',
       })
       .then((res) => {
+        // eslint-disable-next-line prefer-destructuring
+        token = res.body.token;
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status');
         expect(res.body).to.have.property('data');
@@ -35,7 +38,7 @@ describe('All Routes', () => {
         email: 'elemanhillary@gmail.com',
         workAddress: 'kampala',
         homeAddress: 'kampala',
-        pin: '123'
+        pin: '123',
       })
       .then((res) => {
         expect(res.status).to.be.equal(422);
@@ -54,7 +57,7 @@ describe('All Routes', () => {
         email: 'elemanhillary@gmail.com',
         workAddress: 'kampala',
         homeAddress: 'kampala',
-        pin: '123456'
+        pin: '123456',
       })
       .then((res) => {
         expect(res.status).to.be.equal(409);
@@ -99,9 +102,32 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
+  it('should signup an Admin  with valid details', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstname: 'eleman',
+        lastname: 'hillary',
+        email: 'admin@admin.com',
+        workAddress: 'kampala',
+        homeAddress: 'kampala',
+        pin: '123456',
+      })
+      .then((res) => {
+        // eslint-disable-next-line prefer-destructuring
+        adminToken = res.body.token;
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('status');
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('token');
+        done();
+      })
+      .catch(err => done(err));
+  });
   it('should get all users successfully', (done) => {
     chai.request(app)
       .get('/api/v1/users')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
@@ -110,9 +136,10 @@ describe('All Routes', () => {
       .catch(error => done(error));
   });
 
-   it('should verify a user', (done) => {
+  it('should verify a user', (done) => {
     chai.request(app)
       .patch('/api/v1/users/elemanhillary@gmail.com/verify')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(202);
         expect(res.body).to.have.property('message');
@@ -124,6 +151,7 @@ describe('All Routes', () => {
   it('should not verified a user successfully', (done) => {
     chai.request(app)
       .patch('/api/v1/users/elemanhillary@gmai.com/verify')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(404);
         expect(res.body).to.have.property('error');
@@ -134,6 +162,7 @@ describe('All Routes', () => {
   it('should not post a loan', (done) => {
     chai.request(app)
       .post('/api/v1/loans')
+      .set('Authorization', token)
       .send({ amount: 13000.20, tenor: 3 })
       .then((res) => {
         expect(res.status).to.be.equal(422);
@@ -145,11 +174,12 @@ describe('All Routes', () => {
   it('should not post a loan when amount exceeds loan type maximum amount', (done) => {
     chai.request(app)
       .post('/api/v1/loans')
+      .set('Authorization', token)
       .send({
-        usermail: 'elemanhillary@gmail.com',
         loanType: 'Agriculture Loan',
-        amount: 20000000, 
-        tenor: 3 })
+        amount: 20000000,
+        tenor: 3,
+      })
       .then((res) => {
         expect(res.status).to.be.equal(403);
         expect(res.body).to.have.property('error');
@@ -157,14 +187,15 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
-    it('should post a loan application', (done) => {
+  it('should post a loan application', (done) => {
     chai.request(app)
       .post('/api/v1/loans')
+      .set('Authorization', token)
       .send({
-        usermail: 'elemanhillary@gmail.com',
         loanType: 'Agriculture Loan',
-        tenor: 3,
-        amount: 2000,})
+        tenor: 4,
+        amount: 3000,
+      })
       .then((res) => {
         expect(res.status).to.be.equal(201);
         expect(res.body).to.have.property('data');
@@ -172,10 +203,11 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
-    it('should verify a loan application', (done) => {
+  it('should verify a loan application', (done) => {
     chai.request(app)
-      .patch('/api/v1/loans/2')
-      .send({status: 'approved'})
+      .patch('/api/v1/loans/1')
+      .send({ status: 'approved' })
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('message');
@@ -184,10 +216,11 @@ describe('All Routes', () => {
       .catch(error => done(error));
   });
 
-    it('should post a loan repayment successfully', (done) => {
+  it('1 should post a loan repayment successfully', (done) => {
     chai.request(app)
-      .post('/api/v1/loans/2/repayments')
-      .send({amount: 200})
+      .post('/api/v1/loans/1/repayments')
+      .set('Authorization', token)
+      .send({ amount: 900 })
       .then((res) => {
         expect(res.status).to.be.equal(201);
         expect(res.body).to.have.property('data');
@@ -195,9 +228,22 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
-      it('should get all loan applications', (done) => {
+  it('2 should post a loan repayment successfully (ADMIN)', (done) => {
+    chai.request(app)
+      .post('/api/v1/loans/repayments')
+      .set('Authorization', adminToken)
+      .send({ amount: 900, email: 'elemanhillary@gmail.com' })
+      .then((res) => {
+        expect(res.status).to.be.equal(201);
+        expect(res.body).to.have.property('data');
+        done();
+      })
+      .catch(error => done(error));
+  });
+  it('should get all loan applications', (done) => {
     chai.request(app)
       .get('/api/v1/loans')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
@@ -207,7 +253,8 @@ describe('All Routes', () => {
   });
   it('should get a specific loan application', (done) => {
     chai.request(app)
-      .get('/api/v1/loans/2')
+      .get('/api/v1/loans/1')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
@@ -218,6 +265,7 @@ describe('All Routes', () => {
   it('should not get a specific loan application', (done) => {
     chai.request(app)
       .get('/api/v1/loans/0')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(404);
         expect(res.body).to.have.property('error');
@@ -228,6 +276,7 @@ describe('All Routes', () => {
   it('should retrieve a loan repayment', (done) => {
     chai.request(app)
       .get('/api/v1/loans/1/repayments')
+      .set('Authorization', token)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
@@ -238,6 +287,7 @@ describe('All Routes', () => {
   it('should not retrieve a loan repayment', (done) => {
     chai.request(app)
       .get('/api/v1/loan/0/repayments')
+      .set('Authorization', token)
       .then((res) => {
         expect(res.status).to.be.equal(404);
         expect(res.body).to.have.property('error');
@@ -248,6 +298,42 @@ describe('All Routes', () => {
   it('should view current loans (not fully repaid)', (done) => {
     chai.request(app)
       .get('/api/v1/loans?status=approved&repaid=false')
+      .set('Authorization', adminToken)
+      .then((res) => {
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.have.property('data');
+        done();
+      })
+      .catch(error => done(error));
+  });
+  it('3 should post loan repayment', (done) => {
+    chai.request(app)
+      .post('/api/v1/loans/1/repayments')
+      .set('Authorization', token)
+      .send({ amount: 900 })
+      .then((res) => {
+        expect(res.status).to.be.equal(201);
+        expect(res.body).to.have.property('data');
+        done();
+      })
+      .catch(error => done(error));
+  });
+  it('4 should post loan repayment', (done) => {
+    chai.request(app)
+      .post('/api/v1/loans/1/repayments')
+      .set('Authorization', token)
+      .send({ amount: 900 })
+      .then((res) => {
+        expect(res.status).to.be.equal(201);
+        expect(res.body).to.have.property('data');
+        done();
+      })
+      .catch(error => done(error));
+  });
+  it('should view current loans (fully repaid)', (done) => {
+    chai.request(app)
+      .get('/api/v1/loans?status=approved&repaid=true')
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
@@ -257,8 +343,9 @@ describe('All Routes', () => {
   });
   it('should reject a loan', (done) => {
     chai.request(app)
-      .patch('/api/v1/loans/2')
+      .patch('/api/v1/loans/1')
       .send({ status: 'rejected' })
+      .set('Authorization', adminToken)
       .then((res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('message');

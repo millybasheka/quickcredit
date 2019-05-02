@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { genToken } = require('../helper/helper');
 const { validateSignUp, validateLogin } = require('../helper/validate');
 const { newUser } = require('../helper/util');
@@ -23,7 +24,7 @@ const signup = (req, res) => {
   const {
     firstname, lastname, email, homeAddress, workAddress, pin,
   } = req.body;
- 
+
   let isAdmin = false;
   const hashedPassword = hashPassword(pin);
   /* checks if email contains string 'admin' and if its at the beginning,
@@ -46,6 +47,7 @@ const signup = (req, res) => {
   /* spread array for user info insertion */
   newUser.insertUser(...userInfo);
   const token = genToken(newUser.head.data.email);
+  // eslint-disable-next-line prefer-destructuring
   data = newUser.head.data;
   res.status(201).json({
     status: 201, Created: 'true', token, data,
@@ -70,7 +72,7 @@ const signin = (req, res) => {
     });
   }
   const { email, pin } = req.body;
-  const cp = comparePassword(newUser.head.data.password, pin)
+  const cp = comparePassword(newUser.head.data.password, pin);
   const result = Object.assign(newUser.checkEmail(email));
   const { bool, node } = result;
   /* check if checkCreds() returned true to authenticate user otherwise dont */
