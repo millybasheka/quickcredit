@@ -41,9 +41,6 @@ function displayClients() {
 					<h6 class="home_address"><span class="home_address_text">Home Address: </span><span class="home_address_">${dat[i].homeaddress}</span></h6>
 				</div>
 				<div class="description">
-					<h6 class="created_at"><span class="created_text">Created at: </span><span class="data">${dat[i].createdOn}</span></h6>
-				</div>
-				<div class="description">
 					<h6 class="verified"><span class="status_text">Status: </span><span class="status_value">${dat[i].status}</span></h6>
 				</div>
 				<div class="description">
