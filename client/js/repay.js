@@ -1,16 +1,20 @@
-async function postFormData(url, data) {
-	const formData = new FormData(document.querySelector('.sign_up form'))
+async function postFormData(url) {
+	const formData = new FormData(document.querySelector('.repayment_form form'))
 	const response = await fetch(url, {
 		method: 'POST',
 		body: new URLSearchParams(formData),
 		headers: new Headers({ 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8' })
 	});
 	return await response.json();
-}
-function getRepays(url) {
-	return fetch(url, {
-	method: 'GET',
-	body: new URLSearchParams({status: status_text}),
-	headers: new Headers({ 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'})
-	}).then(response => response.json())
-}
+};
+function getRepays() {
+	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
+	.then(data => {
+		console.log(data)
+	})
+	.catch(error => error);
+};
+
+(function(){
+getRepays();
+})();
