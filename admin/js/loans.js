@@ -6,32 +6,35 @@ const errors = document.querySelector('.errors');
 const get_loan = document.getElementById('get_loan');
 const loan_id = document.querySelector('.amount input[name = loan]');
 
-async function getData(url) {
-	const response = await fetch(url, {
-		method: 'GET'
+function getData(url) {
+	const response = fetch(url, {
+		method: 'GET',
 		headers: new Headers({
 				     'Authorization': localStorage.getItem('token'),
 				     })
 	});
-	return await response.json();
+	return response.json();
 }
 
-async function patchLoan(url, status_text) {
-	const response = await fetch(url, {
+function patchLoan(url, status_text) {
+	const response = fetch(url, {
 		method: 'PATCH',
 		body: new URLSearchParams({ status: status_text }),
 		headers: new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 				     'Authorization': localStorage.getItem('token'),
 				     })
 	});
-	return await response.json();
+	return response.json();
 }
 
-async function getLoansDep(url) {
-	const response = await fetch(url, {
-		method: 'GET'
+function getLoansDep(url) {
+	const response = fetch(url, {
+		method: 'GET',
+		headers: new Headers({
+				     'Authorization': localStorage.getItem('token'),
+				     })
 	});
-	return await response.json();
+	return response.json();
 }
 
 function displayLoans() {
