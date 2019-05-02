@@ -78,9 +78,9 @@ submitLogin.onclick = (e) => {
 		if (data.Success) {
 			localStorage.setItem('token', data.token)
 			if(data.data.isAdmin) {
-				window.location.href = `https://elemanhillary.github.io/QuickCredit/admin/?token=${data.token}`
+				window.location.href = 'https://elemanhillary.github.io/QuickCredit/admin/'
 			} else {
-				window.location.href = `https://elemanhillary.github.io/QuickCredit/client/?token=${data.token}`;
+				window.location.href = 'https://elemanhillary.github.io/QuickCredit/client/';
 			}
 		} else if (data.status === 422){
 			errors.textContent = data.message;
