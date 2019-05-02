@@ -74,6 +74,7 @@ function verifyLoan() {
 			if (e.target.checked) {
 				let loan_id = e.target.parentElement.parentElement.parentElement.parentElement
 				.parentElement.children[0].firstElementChild.textContent;
+				console.log(loan_id)
 				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'rejected')
 				.then(data => {
 					console.error(data)
