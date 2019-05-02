@@ -67,7 +67,6 @@ function displayClients() {
 		} else {
 			clientsArea.insertAdjacentHTML('beforeend', '<h4> No Data </h4');
 		}
-		console.log(data)
 	})
 	.catch(error => console.error(error));
 }
@@ -77,6 +76,7 @@ function verifyUser() {
 	yes.forEach(function (l) {
 		l.onclick = function (e) {
 			const email = e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent
+			console.log(email)
 			patchUser(`https://qwikcredit.herokuapp.com/api/v1/users/${email}/verify`)
 			.then(data => {
 				data
