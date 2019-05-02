@@ -1,6 +1,6 @@
 const submit_app = document.querySelector(".submit_app");
 submit_app.onclick = (e) => {
-	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}`)
+	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
 	.then(data => {
 		console.log(data);
 		if (data.Success) {
