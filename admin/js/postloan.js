@@ -21,5 +21,6 @@ repayBtn.onclick = function(_e) {
 	.catch(error => {
 		console.error(error);
 	})
-	window.location.reload(true)
+	document.querySelector('.amount input[name = email]').reset();
+        document.querySelector('.amount input[name = paidAmount]').reset();
 }
