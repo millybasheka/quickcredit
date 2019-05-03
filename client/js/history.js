@@ -13,6 +13,7 @@ function getRepays(url) {
 compiled.onclick = function(e) {
 	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
+		console.log(data)
 		clientsArea[0].innerHTML = ''
 		clientsArea[1].innerHTML = ''
 		const dat = data.loans
