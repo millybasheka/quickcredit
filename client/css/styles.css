@@ -81,8 +81,8 @@ body{
 .Message {
  display: table;
     position: absolute;
-	left: 0;
-	top: 0;
+	left: 0px;
+	right: 0px;
     margin: 40px auto 0;
     width: 70%;
     background-color: #0074D9;
