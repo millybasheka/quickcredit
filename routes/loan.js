@@ -10,7 +10,12 @@ const router = express.Router();
  */
 
 router.post('/loans', checkToken, loanController.loanApply);
-
+/**
+ *
+ * get compiled history
+ *
+ */
+router.get('/compiled', checkToken, loanController.compiled);
 /**
   *
   *
