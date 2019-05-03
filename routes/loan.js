@@ -15,7 +15,7 @@ router.post('/loans', checkToken, loanController.loanApply);
  * get compiled history
  *
  */
-router.get('/compiled', loanController.compiled);
+router.get('/compiled', checkToken, loanController.compiled);
 /**
   *
   *
