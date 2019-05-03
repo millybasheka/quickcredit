@@ -38,7 +38,7 @@ To install and run this project you would need to have listed stack installed:
 - Node Js
 To run:
 
-
+- Make sure to run adminand user in different browsers
 ```sh
 git clone <https://github.com/elemanhillary/QuickCredit.git>
 cd QuickCredit
@@ -49,7 +49,7 @@ npm start
 ## Testing
 
 ```sh
-npm test
+npm run test
 ```
 
 ## API-ENDPOINTS
