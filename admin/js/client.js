@@ -81,6 +81,7 @@ function verifyUser() {
 				console.log(data)
 			})
 			.catch(error => error);
+			window.location.reload(true)
 		}
 	})
 }
