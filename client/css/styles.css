@@ -79,13 +79,15 @@ body{
 }
 
 .Message {
-  display: table;
-  position: relative;
-  margin: 40px auto 0;
-  width: 500px;
-  background-color: #0074D9;
-  color: #fff;
-  transition: all 0.2s ease;
+ display: table;
+    position: absolute;
+	left: 0;
+	top: 0;
+    margin: 40px auto 0;
+    width: 70%;
+    background-color: #0074D9;
+    color: #fff;
+    transition: all 0.2s ease;
 }
 .Message.is-hidden {
   opacity: 0;
