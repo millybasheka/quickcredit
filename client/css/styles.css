@@ -55,17 +55,52 @@ body{
 	padding: 20px;
 	border-radius: 8px;
 	margin: 0px 30px 20px 0px;
-	box-shadow: 0px 8px 0px 0.2px #9ea1a2d6, inset 0px 0.2px 0px 1px #9ea1a2d6;
+	border: 2px solid #0084d7;
 }
-.card-loan-type:active, li.tab:active, .submit_app input:active{
-	box-shadow: none;
+.card-loan-type:active, li.tab:active, .clients-card:hover,
+.card-loan-type:hover, li.tab:hover, .submit_app input:active{
+	box-shadow: 0px 0px 0px 3px #0084d759;
 	transition: box-shadow 200ms;
 	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.top_badge{
+	    color: #fff;
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 8px;
+    border-bottom: none;
+    border-bottom-left-radius: 0px;
+    width: max-content;
+    border-bottom-right-radius: 0px;
+    margin-left: 5px;
+    background: #0284d7;
+    font-weight: bold;
+}
+.clients-card{
+	    cursor: pointer;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0px 30px 20px 0px;
+    border: 2px solid #0084d7;
+}
+.clients-card .description h6{
+	font-size: 16px;
 }
 .section{
 	padding: 50px 200px 0px 200px;
 }
-
+.compiled {
+	color: #0084d7;
+    border: 1px solid #0084d7;
+    width: max-content;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.compiled:hover {
+	cursor: pointer;
+    box-shadow: 0px 0px 0px 2px #0084d796;
+}
 .list_loantype{
 	list-style: none;
 	margin: 0 -16px;
@@ -211,7 +246,7 @@ span.navburger{
 .clients-card{
 	flex-wrap: wrap;
 	width: 100%;
-	margin-bottom: 40px;
+	margin-bottom: 10px;
 }
 .verified span.status_value{
 	position: initial;
