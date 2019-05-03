@@ -15,6 +15,7 @@ class NodeUser {
       this.password = password;
       this.status = 'unverified';
       this.isAdmin = isAdmin;
+      this.createdOn = new Date().toUTCString();
     }();
     this.next = next;
   }
