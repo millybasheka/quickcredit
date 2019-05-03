@@ -131,7 +131,7 @@ const repay = (req, res) => {
     } else {
       newRepayment.insertRepay(...dataArray);
       node.balance = newRepayment.head.data.balance;
-      if (paidAmount === newAppHead.paymentInstallment) newApplication.toggleRepay(LoanId);
+      if (newRepayment.head.data.balance <= 0) newApplication.toggleRepay(LoanId);
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
       idRe += 1;
     }
