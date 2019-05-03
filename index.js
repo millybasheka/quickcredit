@@ -18,7 +18,7 @@ app.use(bodyparser.json());
  *
  */
 app.get('/docs', function(req, res) {
-    res.sendFile(path.join(__dirname + '/doc/index.html'));
+    res.sendFile(path.join(__dirname + '/doc/quickcredit.html'));
 });
 
 /**
