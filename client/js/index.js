@@ -1,4 +1,5 @@
 const errors = document.querySelector('.errors');
+const errorText = document.querySelector('.errors-body p');
 const success = document.querySelector('.success');
 
 (function () {
@@ -71,19 +72,19 @@ submit.onclick = (e) => {
 			}, 1500)
 			localStorage.setItem('loan_id', data.data.id)
 		} else if (data.status === 422){
-			errors.textContent = data.message;
+			errorText.textContent = data.message;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'
 			}, 1500)			
 		} else if (data.status === 403) {
-			errors.textContent = data.error;
+			errorText.textContent = data.error;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'
 			}, 1500)
 		} else {
-			errors.textContent = data.error;
+			errorText.textContent = data.error;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'
