@@ -4,12 +4,14 @@ console.log(clientsArea)
 function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',
-	headers: new Headers({ 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'})
+	headers: new Headers({ 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+			     'Authorization': localStorage.getItem(token),
+			     })
 	}).then(response => response.json())
 }
 
 compiled.onclick = function(e) {
-	getRepays('http://localhost:3000/api/v1/compiled')
+	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
 		clientsArea[0].innerHTML = ''
 		clientsArea[1].innerHTML = ''
