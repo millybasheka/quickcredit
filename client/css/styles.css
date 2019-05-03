@@ -70,9 +70,11 @@ body{
     border-radius: 8px;
     border-bottom: none;
     border-bottom-left-radius: 0px;
-    width: max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -webkit-max-content;
     border-bottom-right-radius: 0px;
-    margin-left: 5px;
+    margin-left: 0px;
     background: #0284d7;
     font-weight: bold;
 }
@@ -92,7 +94,9 @@ body{
 .compiled {
 	color: #0084d7;
     border: 1px solid #0084d7;
-    width: max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -webkit-max-content;
     padding: 5px;
     border-radius: 3px;
     margin-bottom: 10px;
@@ -144,7 +148,6 @@ body{
     color: #2E7D32;
     top: auto;
 }
-
 .loan_form{
 	    position: absolute;
     top: 200px;
@@ -155,12 +158,16 @@ body{
 	border-top-left-radius: 30px;
 	border-top-right-radius: 30px;
 	box-shadow: 0px 0px 20px 1000px #d6d6d654, 0px 0px 10px 5px #d6d6d6ba; 
-    padding: 40px 60px 40px 60px;
+    padding: 40px 20px 40px 20px;
+    margin-left: -20px;
+    width: -moz-available;
+    width: -webkit-available
+    width: -ms-availbale;
 }
 
 input{
 	margin-bottom: 25px;
-	width: 350px;
+	width: 100%;
 	font-weight: bold;
 	padding: 10px 5px 10px 5px;
 	border: 2px solid #a9a9a9;
@@ -168,7 +175,10 @@ input{
 	background: transparent;
 	color: inherit;
 }
-
+.loan_form form{
+	flex-wrap: wrap;
+	width: 100%;
+}
 .submit_app input{
 	border: 2px solid #0084d7;
 	background: #0084d7;
@@ -196,7 +206,7 @@ input{
     line-height: 1.2em;
 	}
 	.card{
-	    padding: 50px 0px 0px 20px;
+	    padding: 20px 0px 0px 20px;
 }
 .card-nav{
 
@@ -238,11 +248,15 @@ li.tab{
     padding: 0px;
 }
 span.navburger{
-	    background: #757575;
-    padding: 4px 40px;
-    display: table;
-    margin-bottom: 15px;
-    border-radius: 10px;
+	background: #757575;
+	padding: 2px 20px;
+	display: block;
+	margin-bottom: 5px;
+	border-radius: 10px;
+	width: 2%;
+}
+span.navburger:nth-of-type(3){
+	margin-bottom: 15px;
 }
 .clients-card{
 	flex-wrap: wrap;
@@ -266,7 +280,7 @@ span.navburger{
 		
 	}
 	.description_loantype_max{
-		font-size: 24px;
+		font-size: 16px;
 	}
 				span.navburger{
 		display: none;
@@ -315,7 +329,7 @@ li.tab{
 
 .description_loantype_max h6{
 	color: #9E9E9E;
-    margin-top: 50px;
+    margin-top: 0px;
     font-size: 16px;
 }
 .border_bottom{
@@ -331,8 +345,7 @@ li.tab{
 
 .repayment_form{
 	margin-top: 100px;
-    padding: 0px 0px 0px 30px;
-	display: flex;
+    padding: 0px;
     justify-content: center;
     flex-wrap: wrap;
 }
