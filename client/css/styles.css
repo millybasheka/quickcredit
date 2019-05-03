@@ -164,7 +164,9 @@ body{
     width: -webkit-available
     width: -ms-availbale;
 }
-
+.repayment_form form{
+	width: 90%;
+}
 input{
 	margin-bottom: 25px;
 	width: 100%;
