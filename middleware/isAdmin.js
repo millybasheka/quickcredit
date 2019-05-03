@@ -4,6 +4,7 @@ const checkAdmin = (req, res, next) => {
 	if (req.decoded) {
 		const email = req.decoded.user.trim();
 		const isAdmin = newUser.checkEmail(email).node.isAdmin;
+		console.log(isAdmin)
 		if (isAdmin) {
 			next();
 		} else {

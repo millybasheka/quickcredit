@@ -33,9 +33,9 @@ const loanApply = (req, res) => {
     return;
   }
 
-  const { boolL } = newApplication.LcheckEmail(usermail);
+  const { boolL, node } = newApplication.LcheckEmail(usermail);
   if (boolL) {
-    if (newUser.checkEmail(usermail).bool && newApplication.head.data.repaid === false) {
+    if (newUser.checkEmail(usermail).bool && node.repaid === false) {
       res.status(404).json({ status: 404, error: 'user can only apply loan once or you have unpaid loan' });
       // eslint-disable-next-line no-useless-return
       return;
@@ -70,12 +70,9 @@ const getAll = (req, res) => {
       for (let i = 0; i < loans.length; i++) {
         if (loans[i].status === status && loans[i].repaid === repaidBool) {
           returns.push(loans[i]);
-        } else {
-          returns.length = 0;
         }
       }
     }
-    
     if (returns.length !== 0) {
       res.status(200).json({ status: 200, data: returns });
       returns.length = 0;
@@ -133,8 +130,8 @@ const repay = (req, res) => {
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
     } else {
       newRepayment.insertRepay(...dataArray);
-      node.balance = newRepayment.balance;
-      if (newRepayment.balance <= 0) node.toggleRepay(LoanId);
+      node.balance = newRepayment.head.data.balance;
+      if (newRepayment.head.data.balance <= 0) newApplication.toggleRepay(LoanId);
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
       idRe += 1;
     }
@@ -153,10 +150,39 @@ const userRepayHist = (req, res) => {
   const LoanId = parseInt(req.params.id, 10);
   const { bool, node } = newRepayment.checkCreds(LoanId);
   if (req.method === 'GET' && bool === true) {
-    res.status(200).send({ status: 200, data: node });
+    res.status(200).json({ status: 200, data: node });
   } else {
-    res.status(404).send({ status: 404, error: 'not found' });
+    res.status(404).json({ status: 404, error: 'not found' });
   }
+};
+
+/**
+ *
+ * @param {res} object
+ * @param {req} object
+ *
+ * view compiled repay and loan history */
+const compiled = (req, res) => {
+  const compiledLoans = [];
+  const compiledLoansID = [];
+  const compiledRepays = []
+  const loans = [...newApplication];
+  const repays = [...newRepayment];
+  if (loans.length === 0 || repays.length === 0) {
+    res.status(404).json({ status: 404, error: 'not found' });
+    return;
+  }
+  for (let i = 0; i < loans.length; i++) {
+    if (loans[i].user === req.decoded.user.trim()) {
+      compiledLoansID.push(loans[i].id);
+      compiledLoans.push(loans[i])
+    }
+  }
+
+  for (let i = 0; i < repays.length; i++) {
+    compiledRepays.push(newRepayment.RcheckCreds(compiledLoansID[i]).nodeR)
+  }
+  res.status(200).json({ status: 200, loans: [...compiledLoans], repays: [...compiledRepays] });
 };
 
 module.exports = {
@@ -164,4 +190,5 @@ module.exports = {
   loanApply,
   getAll,
   repay,
+  compiled,
 };
