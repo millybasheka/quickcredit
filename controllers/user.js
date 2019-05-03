@@ -78,7 +78,7 @@ const signin = (req, res) => {
   /* check if checkCreds() returned true to authenticate user otherwise dont */
   if (bool && cp) {
     /* show success by status code */
-    const token = genToken(newUser.head.data.email);
+    const token = genToken(email);
     data = node;
     return res.status(200).json({
       status: 200, Success: 'true', token, data,
