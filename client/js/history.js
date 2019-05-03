@@ -5,7 +5,7 @@ function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',
 	headers: new Headers({ 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-			     'Authorization': localStorage.getItem(token),
+			     'Authorization': localStorage.getItem('token'),
 			     })
 	}).then(response => response.json())
 }
