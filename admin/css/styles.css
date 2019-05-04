@@ -304,11 +304,15 @@ li.tab{
     padding: 0px;
 }
 span.navburger{
-	    background: #757575;
-    padding: 8px 60px;
-    display: table;
-    margin-bottom: 15px;
-    border-radius: 10px;
+	background: #757575;
+	padding: 2px 20px;
+	display: block;
+	margin-bottom: 5px;
+	border-radius: 10px;
+	width: 2%;
+}
+span.navburger:nth-of-type(3){
+	margin-bottom: 15px;
 }
 .clients-card{
 	flex-wrap: wrap;
