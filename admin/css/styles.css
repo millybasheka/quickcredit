@@ -99,6 +99,9 @@ li.tab{
 	border-radius: 6px;
 	box-shadow: 4px 5px 0px 0.2px #000, inset 0px 0.2px 0px 1px #000;
 }
+.created_at{
+	margin-bottom: 5px;
+}
 .border_bottom a{
 	text-decoration: none;
 	color: #000;
