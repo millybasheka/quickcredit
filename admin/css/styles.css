@@ -287,13 +287,13 @@ li.tab:active, .yes:active, .no:active, .checkmarker:active{
     line-height: 1.2em;
 }
 .card-text{
-	font-size: 32px;
+	font-size: 16px;
 }
 h6.actions_verify {
     margin-top: 15px !important;
 }
 .description h6{
-		font-size: 32px;
+		font-size: 16px;
     margin-top: 0;
 }
 li.tab{
