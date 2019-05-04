@@ -3,6 +3,7 @@ const approved = document.getElementById('status');
 const repaid = document.getElementById('repaid');
 const search = document.getElementById('search');
 const errors = document.querySelector('.errors');
+const success = document.querySelector('.success');
 const get_loan = document.getElementById('get_loan');
 const loan_id = document.querySelector('.amount input[name = loan]');
 
@@ -62,8 +63,11 @@ function verifyLoan() {
 				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'approved')
 				.then(data => {
 					if (data.status === 200) {
-									const status_value = document.querySelectorAll('.status_value');
-	changeColor(status_value)
+	success.textContent = 'successfully Approved';
+			success.style.display = 'block'
+			setTimeout(function() {
+				success.style.display = 'none'
+			}, 1500)
 					}
 				})
 				.catch(error => console.error(error));
@@ -81,10 +85,17 @@ function verifyLoan() {
 				console.log(loan_id)
 				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'rejected')
 				.then(data => {
-					console.error(data)
+					if(data.status === 200){
+							errors.textContent = 'Rejected';
+			errors.style.display = 'block'
+			setTimeout(function() {
+				errors.style.display = 'none'
+			}, 1500)
+					}
 				})
 				.catch(error => console.error(error));
 			}
+			window.location.reload(true)
 			
 		}
 	})
