@@ -15,17 +15,18 @@ background: #0084d7;
  }
 
 .intro{
-    font-size: 16px;
+    font-size: 32px;
   line-height: 1.2em;
 }
 .desc{
-  font-size: 32px;
+  font-size: 48px;
   line-height: 1.2em;
 }
 a{
       text-decoration: none;
     color: #fff;
 }
+
 .getStarted{
   margin-top: 50px;
   text-align:center;
@@ -38,4 +39,12 @@ a{
     box-shadow: 3.5px 6px 0px #fff;
 }
   
-
+@media screen and (min-width:300px){
+  .intro{
+    font-size: 16px;
+  line-height: 1.2em;
+}
+.desc{
+  font-size: 32px;
+  line-height: 1.2em;
+}
