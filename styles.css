@@ -15,17 +15,19 @@ background: #0084d7;
  }
 
 .intro{
-    font-size: 3em;
+    font-size: 16px;
+  line-height: 1.2em;
 }
 .desc{
-  font-size: 4em;
-  margin-right: 20px;
+  font-size: 32px;
+  line-height: 1.2em;
 }
 a{
       text-decoration: none;
     color: #fff;
 }
 .getStarted{
+  margin-top: 50px;
   text-align:center;
   width: 100px;
     text-decoration: none;
