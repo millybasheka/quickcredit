@@ -65,6 +65,7 @@ function verifyLoan() {
 				})
 				.catch(error => console.error(error));
 			}
+			window.location.reload(true)
 			
 		}
 	})
