@@ -9,6 +9,9 @@
 		<h2>Quick Credit Client</h2>
 	</div>
 	<div class="card">
+			<span class="navburger"></span>
+			<span class="navburger"></span>
+			<span class="navburger"></span>
 		<div class="card-nav">
 			<ul class="nav_bar">
 				<li class="tab"><span class="border_bottom"><a href="./index.html"><h4>Home</h4></a></span></li>
@@ -17,10 +20,7 @@
 			</ul>
 		</div>
 		<div class="repayment_form">
-			<form method="POST" action="http://localhost:3000/loans/1/repayment">
-				<div class="user_id">
-					<input id="user_id" type="text" name="idu" value="1" hidden/>
-				</div>
+			<form method="POST" action="http://localhost:3000/api/v1/loans/1/repayments">
 				<div class="amount">
 					<input type="text" name="paidAmount" placeholder="Amount">
 				</div>

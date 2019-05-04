@@ -8,7 +8,15 @@
 	<div class="app_name">
 		<h2>Quick Credit Client</h2>
 	</div>
+
+	<div class="errors">
+	</div>
+	<div class="success">
+	</div>
 	<div class="card">
+			<span class="navburger"></span>
+			<span class="navburger"></span>
+			<span class="navburger"></span>
 		<div class="card-nav">
 			<ul class="nav_bar">
 				<li class="tab"><span class="border_bottom"><a href="./index.html"><h4>Home</h4></a></span></li>
@@ -86,14 +94,8 @@
 				</li>
 			</ul>
 		</div>
-		<div class="loan_form">
-			<form method="POST" action="http://localhost:3000/loans">
-				<div class="user_id">
-					<input id="user_id" type="text" name="LoanId" value="1" hidden/>
-				</div>
-				<div class="user_email">
-					<input type="text" name="usermail" value="elemanhillary@gmail.com" hidden/>
-				</div>
+		<div class="loan_form" style="">
+			<form>
 				<div class="loanType">
 					<input id="loanType" type="text" name="loanType" hidden>
 				</div>
@@ -103,10 +105,11 @@
 				<div class="amount">
 					<input type="text" name="amount" placeholder="Amount">
 				</div>
+			</form>
+
 				<div class="submit_app">
 					<input id="apply" type="submit" name="submit" value="Apply">
 				</div>
-			</form>
 		</div>
 	</div>
 	<script type="text/javascript" src="./js/index.js"></script>
