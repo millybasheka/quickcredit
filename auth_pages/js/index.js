@@ -93,8 +93,14 @@ submitLogin.onclick = (e) => {
 			setTimeout(function() {
 				errors.style.display = 'none'
 			}, 1500)			
+		} else if(data.status === 401){
+			errors.textContent = data.message;
+			errors.style.display = 'block'
+			setTimeout(function() {
+				errors.style.display = 'none'
+			}, 1500)
 		} else {
-			errors.textContent = 'Authentication failed';
+			errors.textContent = data.error;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'
