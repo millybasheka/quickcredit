@@ -81,7 +81,8 @@ function verifyUser() {
 				console.log(data)
 			})
 			.catch(error => error);
-			window.location.reload(true)
+			const cl = document.querySelector('.clients').innerHTML
+			clientsArea.innerHTML = cl
 		}
 	})
 }
