@@ -61,7 +61,10 @@ function verifyLoan() {
 					.parentElement.children[0].firstElementChild.textContent;
 				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'approved')
 				.then(data => {
-					console.error(data)
+					if (data.status === 200) {
+									const status_value = document.querySelectorAll('.status_value');
+	changeColor(status_value)
+					}
 				})
 				.catch(error => console.error(error));
 			}
@@ -82,7 +85,6 @@ function verifyLoan() {
 				})
 				.catch(error => console.error(error));
 			}
-			window.location.reload(true)
 			
 		}
 	})
@@ -115,8 +117,6 @@ search.onclick = function() {
 			if (Object.prototype.toString.call(data.data) === '[object Array]') {
 				clientsArea.innerHTML = '';
 				helperFunc(data);
-					const status_value = document.querySelectorAll('.status_value');
-	changeColor(status_value)
 			}
 		})
 		.catch(error => {
