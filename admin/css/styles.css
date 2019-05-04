@@ -270,19 +270,18 @@ position: absolute;
 background: #fff;
 border-top-left-radius: 30px;
 box-shadow: 0px 0px 9px 2px #0284d794;
-height: 260px;
 left: 0px;
 top: 100px;
 }
 
 .nav_bar{
-	display: block;
-    list-style: none;
-    padding: 60px 40px 5px 40px;
-    margin: 0px 40px;
+list-style: none;
+display: block;
+padding: 20px 20px 5px 20px;
+margin: 0px 20px;
 }
 .border_bottom{
-	font-size: 48px;
+	font-size: 16px;
     line-height: 1.2em;
 }
 .card-text{
@@ -296,11 +295,11 @@ h6.actions_verify {
     margin-top: 0;
 }
 li.tab{
-	    cursor: pointer;
-    border-radius: 6px;
-    margin-bottom: 100px;
-    box-shadow: none;
-    padding: 0px;
+cursor: pointer;
+border-radius: 6px;
+margin-bottom: 50px;
+box-shadow: none;
+padding: 0px;
 }
 span.navburger{
 	background: #757575;
