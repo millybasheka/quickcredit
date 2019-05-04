@@ -72,7 +72,7 @@ function verifyLoan() {
 				})
 				.catch(error => console.error(error));
 			}
-			window.location.reload(true)
+			
 			
 		}
 	})
@@ -95,7 +95,7 @@ function verifyLoan() {
 				})
 				.catch(error => console.error(error));
 			}
-			window.location.reload(true)
+			
 			
 		}
 	})
@@ -148,8 +148,7 @@ get_loan.onclick = function(){
 			} else if (data.status === 200) {
 				clientsArea.innerHTML = ''
 				helperGetByID(data)
-					const status_value = document.querySelectorAll('.status_value');
-	changeColor(status_value)
+			
 			}
 		})
 		.catch(error => {
@@ -200,7 +199,8 @@ function helperGetByID(data) {
 	</div>
 	</li>
 	`)
-	
+			const status_value = document.querySelectorAll('.status_value');
+	changeColor(status_value)
 }
 
 function helperFunc(data) {
@@ -247,6 +247,8 @@ function helperFunc(data) {
 		</li>
 		`)
 	}
+			const status_value = document.querySelectorAll('.status_value');
+	changeColor(status_value)
 }
 
 function changeColor(status_value){
