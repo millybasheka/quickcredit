@@ -238,6 +238,18 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
+  it('2 should post a loan repayment successfully (ADMIN)', (done) => {
+    chai.request(app)
+      .post('/api/v1/loans/repayments')
+      .set('Authorization', adminToken)
+      .send({ amount: 900, email: 'elemanhillary@gmail.com' })
+      .then((res) => {
+        expect(res.status).to.be.equal(201);
+        expect(res.body).to.have.property('data');
+        done();
+      })
+      .catch(error => done(error));
+  });
   it('should get all loan applications', (done) => {
     chai.request(app)
       .get('/api/v1/loans')
