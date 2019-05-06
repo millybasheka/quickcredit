@@ -1,14 +1,14 @@
 const errors = document.querySelector('.errors');
 const success = document.querySelector('.success');
-
+let applyBtn = document.getElementById("apply");
 (function () {
 	let type = Array.from(document.querySelectorAll(".card-loan-type"));
 	let loanForm = document.querySelector(".loan_form");
 	let loantype = document.getElementById("loanType");
 	let tenor = document.getElementById("tenor");
-	let applyBtn = document.getElementById("apply");
+	
 	let card = document.querySelector(".card");
-	let top, left, width, height = 0;
+	let top, left, width, widdie, height = 0;
 	tenor.onblur = (e) => {
 		if (tenor.value > 12) {
 			apply.disabled = true;
@@ -38,9 +38,11 @@ const success = document.querySelector('.success');
 		type[i].onclick = (e) => {
 			top = type[i].offsetTop - 20
 			left = type[i].offsetLeft;
+			widdie = type[i].offsetWidth;
 			loanForm.style.top= `${top}px`;
 			loanForm.style.left= `${left}px`;
 			loanForm.style.display = "block"
+			loanForm.style.width = `${widdie}px`
 			img = type[i];
 			style = img.currentStyle || window.getComputedStyle(img, false)
 			bi = style.backgroundImage.slice(4, -1).replace(/["']/g, "");
@@ -57,7 +59,6 @@ const success = document.querySelector('.success');
 	}
 })();
 
-
 let submit = document.querySelector('.submit_app');
 let data;
 submit.onclick = (e) => {
@@ -65,11 +66,19 @@ submit.onclick = (e) => {
 	.then(data => {
 		if (data.status === 201) {
 			success.textContent = 'successfully applied';
+			applyBtn.value = 'successfully applied'
+			applyBtn.style.background = '#4CAF50'
+			applyBtn.style.borderColor = '#4CAF50'
+			applyBtn.style.boxShadow = 'none'
 			success.style.display = 'block'
 			setTimeout(function() {
 				success.style.display = 'none'
+				applyBtn.value = 'apply'
+				applyBtn.style.border = '#0084d7'
+                applyBtn.style.background = '#0084d7'
+                applyBtn.style.boxShadow = '4px 5px 0px 0.2px #9E9E9E, inset 0px 0.2px 0px 1px #0284d7'
+                document.querySelector('.loan_form').style.display = 'none';
 			}, 1500)
-			localStorage.setItem('loan_id', data.data.id)
 		} else if (data.status === 422){
 			errors.textContent = data.message;
 			errors.style.display = 'block'
