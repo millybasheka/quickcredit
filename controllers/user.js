@@ -72,6 +72,10 @@ const signin = (req, res) => {
     });
   }
   const { email, pin } = req.body;
+   const { email, pin } = req.body;
+  if (newUser.head === undefined || null) {
+    return res.status(404).json({ status: 404, error: 'you must be a user to signin' });
+  }
   const cp = comparePassword(newUser.head.data.password, pin);
   const result = Object.assign(newUser.checkEmail(email));
   const { bool, node } = result;
