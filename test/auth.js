@@ -1,22 +1,24 @@
+/* eslint-disable no-undef */
 const chai = require('chai');
-const expect = chai.expect;
+
+const { expect } = chai;
 const sinon = require('sinon');
-const { checkToken } = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
+const { checkToken } = require('../middleware/auth');
 const { SECRET_KEY } = require('../helper/config');
 
-describe('Test Auth Middleware', function(){
-  var request;
-  var response;
-  var next;
+describe('Test Auth Middleware', () => {
+  let request;
+  let response;
+  let next;
 
   beforeEach(() => {
-      request = {};
-      response = {
-          status: sinon.stub().returnsThis(),
-          json: sinon.spy()
-      };
-      next = sinon.spy();
+    request = {};
+    response = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.spy(),
+    };
+    next = sinon.spy();
   });
   it('next should not be called if bad token was provided', () => {
     request.headers = {};

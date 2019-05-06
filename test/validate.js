@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 const { expect } = require('chai');
-const { validateLoan, validateLogin,
+const {
+  validateLoan, validateLogin,
   validateSignUp,
-  loanApproveValidate
-} = require('../helper/validate')
+  loanApproveValidate,
+} = require('../helper/validate');
 
 const login = {
   email: 'elemanhillary@gmail.com',
@@ -15,7 +17,7 @@ const loan = {
   loanType: 'Auto Loan',
   tenor: 12,
   amount: 3000,
-}
+};
 
 const user = {
   firstname: 'eleman',
