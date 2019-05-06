@@ -38,10 +38,10 @@ const toggleButtons = () => {
 let submit = document.querySelector('.submit');
 
 submit.onclick = (e) => {
-	postFormData('http://localhost:3000/api/v1/auth/signup')
+	postFormData('https://qwikcredit.herokuapp.com/api/v1/auth/signup')
 	.then(data => {
 		if (data.Created) {
-			window.location.href = "file:///root/QuickCredit_/UI/auth_pages/index.html"
+			window.location.href = "https://elemanhillary.github.io/QuickCredit/auth_pages/"
 		} else if (data.status === 422){
 			errors.textContent = data.message;
 			errors.style.display = 'block'
@@ -73,13 +73,19 @@ submit.onclick = (e) => {
 let submitLogin = document.querySelector('#submit_login');
 
 submitLogin.onclick = (e) => {
-	postFormData('http://localhost:3000/api/v1/auth/signin')
+	postFormData('https://qwikcredit.herokuapp.com/api/v1/auth/signin')
 	.then(data => {
 		if (data.Success) {
-			if(data.data.isAdmin) {
-				window.location.href = `file:///root/QuickCredit_/UI/admin/index.html?token=${data.token}`
+			if ('token' in localStorage) {
+				localStorage.removeItem('token')
+				localStorage.setItem('token', data.token)
 			} else {
-				window.location.href = `file:///root/QuickCredit_/UI/client/index.html?token=${data.token}`;
+				localStorage.setItem('token', data.token)
+			}
+			if(data.data.isAdmin) {
+				window.location.href = 'https://elemanhillary.github.io/QuickCredit/admin/'
+			} else {
+				window.location.href = 'https://elemanhillary.github.io/QuickCredit/client/';
 			}
 		} else if (data.status === 422){
 			errors.textContent = data.message;
@@ -87,8 +93,14 @@ submitLogin.onclick = (e) => {
 			setTimeout(function() {
 				errors.style.display = 'none'
 			}, 1500)			
+		} else if(data.status === 401){
+			errors.textContent = data.message;
+			errors.style.display = 'block'
+			setTimeout(function() {
+				errors.style.display = 'none'
+			}, 1500)
 		} else {
-			errors.textContent = 'Authentication failed';
+			errors.textContent = data.error;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'

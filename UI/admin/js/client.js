@@ -4,7 +4,7 @@ async function getData(url) {
 	const response = await fetch(url, {
 		method: 'GET',
 		headers: new Headers({
-			'Authorization': window.location.search.split("=")[1].toString()
+			'Authorization': localStorage.getItem('token')
 		})
 	});
 	return await response.json();
@@ -15,14 +15,14 @@ async function patchUser(url) {
 		method: 'PATCH',
 		headers: new Headers({
 			'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-			'Authorization': window.location.search.split("=")[1].toString()
+			'Authorization': localStorage.getItem('token')
 		})
 	});
 	return await response.json();
 }
 
 function displayClients() {
-	getData('http://localhost:3000/api/v1/users')
+	getData('https://qwikcredit.herokuapp.com/api/v1/users')
 	.then(data => {
 		if (Object.prototype.toString.call(data.data) === '[object Array]') {
 			const dat = data.data;
@@ -67,7 +67,6 @@ function displayClients() {
 		} else {
 			clientsArea.insertAdjacentHTML('beforeend', '<h4> No Data </h4');
 		}
-		console.log(data)
 	})
 	.catch(error => console.error(error));
 }
@@ -77,12 +76,12 @@ function verifyUser() {
 	yes.forEach(function (l) {
 		l.onclick = function (e) {
 			const email = e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent
-			patchUser(`http://localhost:3000/api/v1/users/${email}/verify`)
+			patchUser(`https://qwikcredit.herokuapp.com/api/v1/users/${email}/verify`)
 			.then(data => {
-				data
+				console.log(data)
 			})
 			.catch(error => error);
-			window.location.reload(true);
+			window.location.reload(true)
 		}
 	})
 }

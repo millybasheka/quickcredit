@@ -1,13 +1,14 @@
 const errors = document.querySelector('.errors');
 const success = document.querySelector('.success');
-
+let applyBtn = document.getElementById("apply");
 (function () {
 	let type = Array.from(document.querySelectorAll(".card-loan-type"));
 	let loanForm = document.querySelector(".loan_form");
 	let loantype = document.getElementById("loanType");
 	let tenor = document.getElementById("tenor");
-	let applyBtn = document.getElementById("apply");
+	
 	let card = document.querySelector(".card");
+	let top, left, width, widdie, height = 0;
 	tenor.onblur = (e) => {
 		if (tenor.value > 12) {
 			apply.disabled = true;
@@ -22,26 +23,34 @@ const success = document.querySelector('.success');
 		}
 	}
 	loanForm.onmouseenter = (e) => {
-		loanForm.style.bottom = "220px";
-		loanForm.style.transition = "bottom 800ms .2s";
-		loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
+		loanForm.style.top= `${top}px`;
+		loanForm.style.left= `${left}px`;
+		// loanForm.style.transition = "bottom 800ms .2s";
+		// loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
 	}
-	loanForm.onmouseleave = (e) => {
-		loanForm.style.bottom = "0px"
+	for (let i = 0; i < type.length; i++) {
+		width = type[i].clientWidth;
+		height = type[i].clientHeight;
+		type[i].style.backgroundPosition = `${width - height}px, 0px`;
 	}
 	let img, bi, style;
 	for (let i = 0; i < type.length; i++) {
 		type[i].onclick = (e) => {
-			loanForm.style.bottom = "220px";
+			top = type[i].offsetTop - 20
+			left = type[i].offsetLeft;
+			widdie = type[i].offsetWidth;
+			loanForm.style.top= `${top}px`;
+			loanForm.style.left= `${left}px`;
 			loanForm.style.display = "block"
+			loanForm.style.width = `${widdie}px`
 			img = type[i];
 			style = img.currentStyle || window.getComputedStyle(img, false)
 			bi = style.backgroundImage.slice(4, -1).replace(/["']/g, "");
 			loanForm.style.background = `url(${bi}) no-repeat`;
 			loanForm.style.backgroundColor = "#fff";
 			loanForm.style.backgroundSize = "contain";
-			loanForm.style.transition = "bottom 800ms .2s";
-			loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
+			// loanForm.style.transition = "bottom 800ms .2s";
+			// loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
 			let children = Array.from(type[i].children);
 			let loanType = children[0].textContent.trim();
 			let loanMax = children[2].textContent.split(" ")[2].toString().split("").slice(0, -9).join("");
@@ -53,13 +62,22 @@ const success = document.querySelector('.success');
 let submit = document.querySelector('.submit_app');
 let data;
 submit.onclick = (e) => {
-	postFormData('http://localhost:3000/api/v1/loans')
+	postFormData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {
 		if (data.status === 201) {
 			success.textContent = 'successfully applied';
+			applyBtn.value = 'successfully applied'
+			applyBtn.style.background = '#4CAF50'
+			applyBtn.style.borderColor = '#4CAF50'
+			applyBtn.style.boxShadow = 'none'
 			success.style.display = 'block'
 			setTimeout(function() {
-				errors.style.display = 'none'
+				success.style.display = 'none'
+				applyBtn.value = 'apply'
+				applyBtn.style.border = '#0084d7'
+                applyBtn.style.background = '#0084d7'
+                applyBtn.style.boxShadow = '4px 5px 0px 0.2px #9E9E9E, inset 0px 0.2px 0px 1px #0284d7'
+                document.querySelector('.loan_form').style.display = 'none';
 			}, 1500)
 		} else if (data.status === 422){
 			errors.textContent = data.message;
@@ -90,7 +108,7 @@ submit.onclick = (e) => {
 			body: new URLSearchParams(formData),
 			headers: new Headers({
 				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-				'Authorization': window.location.search.split("=")[1].toString()
+				'Authorization': localStorage.getItem('token')
 			})
 		});
 		return await response.json();

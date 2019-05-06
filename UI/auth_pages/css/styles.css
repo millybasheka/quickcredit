@@ -6,7 +6,7 @@
 body{
 	background: #0084d7;
 	font-family: sans-serif;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .app_name{
@@ -32,8 +32,9 @@ body{
 
 .button_actions{
 	display: flex;
-	margin-bottom: 50px;
-	margin-left:100px;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 .login, .signup{
 	border: 2px solid #fff;
@@ -51,7 +52,7 @@ body{
 	font-weight: bold;
 }
 .card{
-	height: 1000px;
+	height: 100vh;
 	background: #fff;
 	padding-top: 100px;
 	border-top-left-radius: 30px;
@@ -114,15 +115,10 @@ input, .select{
 }
 /* tables, iPads(portrait) */
 @media(min-width: 768px) and (max-width: 1024){
-	.button_actions{
-		margin-left: 120px;
-	}
+
 }
 /* tables, iPads(lanscape) */
 @media(min-width: 401px) and (max-width: 767px){
-	.button_actions{
-		margin-left: 96px !important;
-	}
 	.card{
 		padding-top: 40px !important;
 	}
@@ -140,10 +136,6 @@ input, .select{
 	}
 	.submit_login input{
 		width: 60px;
-	}
-	.button_actions{
-		margin-left: 40px;
-		margin-top: 30px;
 	}
 	.button_actions div{
 		padding: 8px 15px 8px 15px;
