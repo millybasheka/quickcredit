@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QuickCredit | Admin</title>
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+</head>
+<body>
+	<div class="app_name">
+		<h2>Quick Credit Admin</h2>
+	</div>
+	<div class="errors">
+	</div>
+	<div class="success">
+	</div>
+	<div class="card">
+		<span class="navburger"></span>
+		<span class="navburger"></span>
+		<span class="navburger"></span>
+		<div class="card-nav">
+			<ul class="nav_bar">
+				<li class="tab">
+					<span class="border_bottom">
+						<a href="./index.html">
+							<h4>Clients</h4>
+						</a>
+					</span>
+				</li>
+				<li class="tab">
+					<span class="border_bottom">
+						<a href="./loanapp.html">
+							<h4>Loan Applications</h4>
+						</a>
+					</span>
+				</li>
+				<li class="tab">
+					<span class="border_bottom">
+						<a href="./postloan.html">
+							<h4>Repayment</h4>
+						</a>
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="filters">
+		<div class="get_loan">
+			<form>
+				<div class="amount">
+					<input type="number" name="loan" placeholder="Loan ID">
+				</div>
+				<div class="submit_app_">
+					<input id="get_loan" value="Get Loan" type="button" />
+				</div>
+			</form>
+		</div>
+			<label class="container">Repaid
+				<input id="repaid" type="checkbox" name="" value="repaid">
+				<span class="checkmarker"></span>
+			</label>
+			<label class="container">Approved
+				<input id="status" type="checkbox" name="" value="status">
+				<span class="checkmarker"></span>
+			</label>
+			<div class="search_btn">
+				<button id="search">search</button>
+			</div>
+		</div>
+		<div class="section">
+			<ul class="clients"></ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="./js/index.js"></script>
+	<script type="text/javascript" src="./js/loans.js"></script>
+</body>
+</html>
