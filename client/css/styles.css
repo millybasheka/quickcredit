@@ -11,17 +11,6 @@ body{
 	margin: 40px 0px 10px 0px;
 }
 
-
-.errors{
-	display: none;
-	background: #EF9A9A;
-    padding: 20px 10px 20px 10px;
-    text-align: center;
-    position: absolute;
-    border-radius: 8px;
-    color: #F44336;
-    top: auto;
-}
 .app_name h2{
 	font-weight: bold;
 	color: #fff;
@@ -139,6 +128,16 @@ body{
 	color: #9E9E9E;
     margin-top: 50px;
 }
+.errors{
+	display: none;
+	background: #EF9A9A;
+    padding: 20px 10px 20px 10px;
+    text-align: center;
+    position: absolute;
+    border-radius: 8px;
+    color: #F44336;
+    top: auto;
+}
 .success{
 	display: none;
 	background: #4DB6AC;
@@ -162,12 +161,10 @@ body{
     padding: 40px 20px 40px 20px;
     margin-left: -20px;
     width: -moz-available;
-    width: -webkit-available
+    width: -webkit-fill-available;
     width: -ms-availbale;
 }
-.repayment_form form{
-	width: 90%;
-}
+
 input{
 	margin-bottom: 25px;
 	width: 100%;
