@@ -4,7 +4,6 @@ const { SECRET_KEY } = require('../helper/config');
 
 // eslint-disable-next-line consistent-return
 const checkToken = (req, res, next) => {
-  
   let token = req.headers.authorization || req.headers['x-access-token'];
   if (token.startsWith('Bearer ')) {
     // Remove Bearer from string
