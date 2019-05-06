@@ -132,7 +132,7 @@ const repay = (req, res) => {
     } else {
       newRepayment.insertRepay(...dataArray);
       node.balance = newRepayment.head.data.balance;
-      if (newRepayment.head.data.balance <= 0) node.toggleRepay(LoanId);
+      if (newRepayment.head.data.balance <= 0) newApplication.toggleRepay(LoanId);
       res.status(201).json({ status: 201, Created: 'true', data: newRepayment.head.data });
       idRe += 1;
     }
@@ -174,7 +174,7 @@ const compiled = (req, res) => {
     return;
   }
   for (let i = 0; i < loans.length; i++) {
-    if (loans[i].user === 'elemanhillary@gmail.com') {
+    if (loans[i].user === req.decoded.user.trim()) {
       compiledLoansID.push(loans[i].id);
       compiledLoans.push(loans[i]);
     }
