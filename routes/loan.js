@@ -8,14 +8,9 @@ const router = express.Router();
  * apply for loan router
  *
  */
-
-router.post('/loans', checkToken, loanController.loanApply);
-/**
- *
- * get compiled history
- *
- */
 router.get('/compiled', checkToken, loanController.compiled);
+router.post('/loans', checkToken, loanController.loanApply);
+
 /**
   *
   *

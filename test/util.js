@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-const { expect, assert } = require('chai');
-const { LinkedList, newUser } = require('../helper/util');
+const { assert } = require('chai');
+const { LinkedList } = require('../helper/util');
 
 describe('Linked List', () => {
   it('Should implement insertUser', () => {

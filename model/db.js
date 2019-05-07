@@ -34,8 +34,8 @@ class NodeLoan {
       this.amount = parseFloat(amount, 10.0);
       this.interest = parseFloat((this.amount * this.tenor * 5) / 100, 10);
       this.repaid = false;
-      this.paymentInstallment = Math.floor(parseFloat((this.amount + this.interest) / this.tenor,
-        10.0));
+      this.paymentInstallment = parseFloat((this.amount + this.interest) / this.tenor,
+        10.0);
       this.balance = parseFloat((this.amount + this.interest), 10.0);
     }();
     this.next = next;

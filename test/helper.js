@@ -1,5 +1,6 @@
-const { expect, assert } = require('chai');
-const { hashPassword, comparePassword } = require('../helper/helper')
+/* eslint-disable no-undef */
+const { expect } = require('chai');
+const { hashPassword, comparePassword } = require('../helper/helper');
 
 describe('JWT, BCRYPT', () => {
   let result;

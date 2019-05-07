@@ -1,6 +1,7 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable no-else-return */
-const { validateLoan, loanTypeAndLoanAmountChecker , amountValidate} = require('../helper/validate');
+const { validateLoan, loanTypeAndLoanAmountChecker, amountValidate } = require('../helper/validate');
 const { newUser, newApplication, newRepayment } = require('../helper/util');
 const { loanTypesAmount } = require('../helper/helper');
 
@@ -64,7 +65,7 @@ const getAll = (req, res) => {
       repaidBool = false;
     }
     const loans = [...newApplication];
-    let returns = [];
+    const returns = [];
     if (loans.length !== 0) {
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < loans.length; i++) {
@@ -99,7 +100,7 @@ const repay = (req, res) => {
   const LoanIdParam = req.params.id || newApplication.LcheckEmail(req.body.email).node.id;
   const LoanId = parseInt(LoanIdParam, 10);
   const paidAmount = parseFloat(req.body.amount);
-  const { error } = amountValidate({amount: paidAmount});
+  const { error } = amountValidate({ amount: paidAmount });
   if (error) {
     return res.status(422).json({
       status: 422,
@@ -165,7 +166,8 @@ const userRepayHist = (req, res) => {
 const compiled = (req, res) => {
   const compiledLoans = [];
   const compiledLoansID = [];
-  const compiledRepays = []
+  const compiledRepays = [];
+  console.log(req.decoded)
   const loans = [...newApplication];
   const repays = [...newRepayment];
   if (loans.length === 0 || repays.length === 0) {
@@ -175,12 +177,12 @@ const compiled = (req, res) => {
   for (let i = 0; i < loans.length; i++) {
     if (loans[i].user === req.decoded.user.trim()) {
       compiledLoansID.push(loans[i].id);
-      compiledLoans.push(loans[i])
+      compiledLoans.push(loans[i]);
     }
   }
 
   for (let i = 0; i < repays.length; i++) {
-    compiledRepays.push(newRepayment.RcheckCreds(compiledLoansID[i]).nodeR)
+    compiledRepays.push(newRepayment.RcheckCreds(compiledLoansID[i]).nodeR);
   }
   res.status(200).json({ status: 200, loans: [...compiledLoans], repays: [...compiledRepays] });
 };

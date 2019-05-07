@@ -1,6 +1,6 @@
-const http = require('http')
-const { expect, assert } = require('chai');
-const app = require('../index.js');
+/* eslint-disable no-undef */
+const http = require('http');
+const { assert } = require('chai');
 
 describe('Express Server', () => {
   it('should return 200', (done) => {
