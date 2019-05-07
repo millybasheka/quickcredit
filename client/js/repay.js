@@ -7,7 +7,7 @@ submit.onclick = (e) => {
 	.then(data => {
 console.log(data)
 		if (data.status === 201) {
-			success.textContent = 'Successful transaction;
+			success.textContent = 'Successful transaction';
 			success.style.display = 'block'
 			setTimeout(function() {
 				success.style.display = 'none'
