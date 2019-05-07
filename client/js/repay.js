@@ -1,11 +1,17 @@
 let submit = document.querySelector('.submit_app');
-let amount = document.querySelector('.amount input[name = paidAmount]')
+let amount = document.querySelector('.amount input[name = paidAmount]');
+let success = document.querySelector('.success');
+let errors = document.querySelector('.errors');
 submit.onclick = (e) => {
 	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
 	.then(data => {
 console.log(data)
 		if (data.status === 201) {
-			console.log(data)
+			success.textContent = 'Successful transaction;
+			success.style.display = 'block'
+			setTimeout(function() {
+				success.style.display = 'none'
+			}, 1500)
 		} else if (data.status === 422){
 			errors.textContent = data.message;
 			errors.style.display = 'block'
