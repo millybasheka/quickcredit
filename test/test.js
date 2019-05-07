@@ -215,14 +215,12 @@ describe('All Routes', () => {
       })
       .catch(error => done(error));
   });
-
-  it('1 should post a loan repayment successfully', (done) => {
+  it('should view current loans (not fully repaid)', (done) => {
     chai.request(app)
-      .post('/api/v1/loans/1/repayments')
-      .set('Authorization', token)
-      .send({ amount: 900 })
+      .get('/api/v1/loans?status=approved&repaid=false')
+      .set('Authorization', adminToken)
       .then((res) => {
-        expect(res.status).to.be.equal(201);
+        expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
         done();
       })
@@ -291,41 +289,6 @@ describe('All Routes', () => {
       .then((res) => {
         expect(res.status).to.be.equal(404);
         expect(res.body).to.have.property('error');
-        done();
-      })
-      .catch(error => done(error));
-  });
-  it('should view current loans (not fully repaid)', (done) => {
-    chai.request(app)
-      .get('/api/v1/loans?status=approved&repaid=false')
-      .set('Authorization', adminToken)
-      .then((res) => {
-        expect(res.status).to.be.equal(200);
-        expect(res.body).to.have.property('data');
-        done();
-      })
-      .catch(error => done(error));
-  });
-  it('3 should post loan repayment', (done) => {
-    chai.request(app)
-      .post('/api/v1/loans/1/repayments')
-      .set('Authorization', token)
-      .send({ amount: 900 })
-      .then((res) => {
-        expect(res.status).to.be.equal(201);
-        expect(res.body).to.have.property('data');
-        done();
-      })
-      .catch(error => done(error));
-  });
-  it('4 should post loan repayment', (done) => {
-    chai.request(app)
-      .post('/api/v1/loans/1/repayments')
-      .set('Authorization', token)
-      .send({ amount: 900 })
-      .then((res) => {
-        expect(res.status).to.be.equal(201);
-        expect(res.body).to.have.property('data');
         done();
       })
       .catch(error => done(error));
