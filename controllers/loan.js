@@ -167,7 +167,6 @@ const compiled = (req, res) => {
   const compiledLoans = [];
   const compiledLoansID = [];
   const compiledRepays = [];
-  console.log(req.decoded)
   const loans = [...newApplication];
   const repays = [...newRepayment];
   if (loans.length === 0 || repays.length === 0) {
