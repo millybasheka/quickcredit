@@ -1,4 +1,8 @@
 /* eslint-disable no-restricted-syntax */
+/**
+ * Joi Documentation
+ * https://github.com/hapijs/joi/blob/v15.0.3/API.md
+ */
 const Joi = require('@hapi/joi');
 const { loanTypesAmount } = require('./helper');
 const { newApplication } = require('../helper/util');
