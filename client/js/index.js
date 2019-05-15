@@ -73,6 +73,7 @@ submit.onclick = (e) => {
 	postFormData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {
 		if (data.status === 201) {
+			localStorage.setItem('loan_id', data.data.id)
 			success.textContent = 'successfully applied';
 			applyBtn.value = 'successfully applied'
 			applyBtn.style.background = '#4CAF50'
