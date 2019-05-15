@@ -19,8 +19,9 @@ function getRepays(url) {
 		if(dat === undefined || repay === undefined){
 			for(let i = 0; i < children.length; i++){
 				children[i].style.display = 'none'
-				cardd.insertAdjacentHTML('beforeend','<img src="../assets/images/agriculture.svg" alt="no data"/>')
+				
 			}
+			cardd.insertAdjacentHTML('beforeend','<img src="../assets/images/agriculture.svg" alt="no data"/>')
 		} else {
 		for (let i = 0; i < dat.length; i++){
 			clientsArea[1].insertAdjacentHTML('beforeend',
