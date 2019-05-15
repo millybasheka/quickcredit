@@ -1,5 +1,7 @@
 let submit = document.querySelector('.submit_app');
 let amount = document.querySelector('.amount input[name = paidAmount]')
+const errors = document.querySelector('.errors')
+const success = document.querySelector('.success')
 submit.onclick = (e) => {
 	postFormData(`https://qwikcredit.herokuapp.com/api/v1/loans/${localStorage.getItem('loan_id')}/repayments`)
 	.then(data => {
