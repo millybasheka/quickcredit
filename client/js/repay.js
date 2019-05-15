@@ -21,7 +21,7 @@ console.log(data)
 				errors.style.display = 'none'
 			}, 1500)
 		} else if (data.status === 404) {
-			errors.textContent = "loan not verified or not found";
+			errors.textContent = data.error;
 			errors.style.display = 'block'
 			setTimeout(function() {
 				errors.style.display = 'none'
