@@ -1,4 +1,5 @@
 const clientsArea = Array.from(document.querySelectorAll('.list_loantype'))
+const children = Array.from(document.querySelector('.card').children)
 function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',
@@ -10,11 +11,15 @@ function getRepays(url) {
 
 	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
-		console.log(data)
 		clientsArea[0].innerHTML = ''
 		clientsArea[1].innerHTML = ''
 		const dat = data.loans
 		const repay = data.repays
+		if(dat === undefined || repay === undefined){
+			for(let i = 0; i < children.length; i++){
+				children[i].style.display = 'none'
+			}
+		} else {
 		for (let i = 0; i < dat.length; i++){
 			clientsArea[1].insertAdjacentHTML('beforeend',
 	`
@@ -67,5 +72,6 @@ function getRepays(url) {
 	</div>
 	</li>
 	`)
+		}
 		}
 	})
