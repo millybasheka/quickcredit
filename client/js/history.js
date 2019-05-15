@@ -1,6 +1,6 @@
 const clientsArea = Array.from(document.querySelectorAll('.list_loantype'))
-const card = document.querySelector('.card')
-const children = Array.from(card.children).splice(4,4)
+const cardd = document.querySelector('.card')
+const children = Array.from(cardd.children).splice(4,4)
 function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',
@@ -19,7 +19,7 @@ function getRepays(url) {
 		if(dat === undefined || repay === undefined){
 			for(let i = 0; i < children.length; i++){
 				children[i].style.display = 'none'
-				card.insertAdjacentHTML('beforeend','<img src="../assets/images/agriculture.svg" alt="no data"/>')
+				cardd.insertAdjacentHTML('beforeend','<img src="../assets/images/agriculture.svg" alt="no data"/>')
 			}
 		} else {
 		for (let i = 0; i < dat.length; i++){
