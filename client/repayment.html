@@ -10,8 +10,6 @@
 	<div class="app_name">
 		<h2>Quick Credit Client</h2>
 	</div>
-	<div class='errors'></div>
-	<div class='success'></div>
 	<div class="card">
 			<span class="navburger"></span>
 			<span class="navburger"></span>
@@ -21,12 +19,14 @@
 				<li class="tab"><span class="border_bottom"><a href="./index.html"><h4>Home</h4></a></span></li>
 				<li class="tab"><span class="border_bottom"><a href="./history.html"><h4>Loan History</h4></a></span></li>
 				<li class="tab"><span class="border_bottom"><a href="./repayment.html"><h4>Repayment</h4></a></span></li>
+			    <li class="tab Logout"><h4>Logout</h4></li>
 			</ul>
 		</div>
 		<div class="repayment_form">
 			<form>
 				<div class="amount">
-					<input type="text" name="paidAmount" placeholder="Amount">
+					<label for="amount">Amount</label>
+					<input id="amount" type="text" name="paidAmount" placeholder="forexample: 2000">
 				</div>
 			</form>
 								<div class="submit_app">

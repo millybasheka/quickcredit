@@ -1,6 +1,5 @@
 const compiled = document.querySelector('.compiled')
 const clientsArea = Array.from(document.querySelectorAll('.list_loantype'))
-console.log(clientsArea)
 function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',

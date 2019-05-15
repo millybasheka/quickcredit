@@ -18,13 +18,44 @@ body{
 	font-family: sans-serif;
 	text-align: center;
 }
+.loan_form input, .repayment_form input{
+	border: 2px solid #0084d7 !important;
+	margin-left: -6px;
+}
+.close_btn{
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: end;
+	left: 10px;
+	cursor: pointer;
+}
+.close_btn img{
+	width: 18px;
+	height: 18px;
+}
+.loan_form label, .repayment_form label {
+	top: 10px;
+	left: 10px;
+	background: #fff;
+	position: relative;
+	font-size: .8em;
+	font-weight: bold;
+	color: #0084d7;
+}
 .rebalance h6{
 	color: #000 !important;
+}
+.history-card{
+	background: url(../assets/images/nodata.svg)
+	
 }
 .currency, .currency_symbol{
 	color: #9E9E9E;
 }
-
+.homee{
+	padding:  0px 40px 0px 40px !important; 
+}
 .card{
 	background: #fff;
 	padding: 0px 0px 0px 20px;
@@ -155,10 +186,9 @@ body{
     border: none;
     display: none;
 	background: #fff;
-	border-top-left-radius: 30px;
-	border-top-right-radius: 30px;
+	border-radius: 6px;
 	box-shadow: 0px 0px 20px 1000px #d6d6d654, 0px 0px 10px 5px #d6d6d6ba; 
-    padding: 40px 20px 40px 20px;
+    padding: 10px 20px 40px 20px;
     margin-left: -20px;
     width: -moz-available;
     width: -webkit-fill-available;
@@ -215,7 +245,7 @@ input{
     background: #fff;
     border-top-left-radius: 30px;
     box-shadow: 0px 0px 9px 2px #0284d794;
-    height: 260px;
+    height: 320px;
     left: 0px;
     top: 100px;
 }
@@ -344,6 +374,7 @@ li.tab{
 }
 
 .repayment_form{
+	display: grid;
 	margin-top: 100px;
     padding: 0px;
     justify-content: center;

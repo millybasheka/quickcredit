@@ -1,4 +1,5 @@
 let card = document.querySelector(".card");
+const logout = document.querySelector(".Logout")
 let height = window.innerHeight;
 card.style.minHeight = height +"px"
 
@@ -16,3 +17,8 @@ tab.forEach(function(e){
 		cardNav.style.display = "none"
 	}
 })
+
+logout.onclick = () => {
+	window.location.href="https://elemanhillary.github.io/QuickCredit/auth_pages/"
+	localStorage.removeItem('token')
+}

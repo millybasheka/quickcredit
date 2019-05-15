@@ -1,9 +1,10 @@
 const errors = document.querySelector('.errors');
 const success = document.querySelector('.success');
+const close_btn = document.querySelector('.close_btn');
 let applyBtn = document.getElementById("apply");
+let loanForm = document.querySelector(".loan_form");
 (function () {
 	let type = Array.from(document.querySelectorAll(".card-loan-type"));
-	let loanForm = document.querySelector(".loan_form");
 	let loantype = document.getElementById("loanType");
 	let tenor = document.getElementById("tenor");
 	
@@ -43,12 +44,12 @@ let applyBtn = document.getElementById("apply");
 			loanForm.style.left= `${left}px`;
 			loanForm.style.display = "block"
 			loanForm.style.width = `${widdie}px`
-			img = type[i];
-			style = img.currentStyle || window.getComputedStyle(img, false)
-			bi = style.backgroundImage.slice(4, -1).replace(/["']/g, "");
-			loanForm.style.background = `url(${bi}) no-repeat`;
-			loanForm.style.backgroundColor = "#fff";
-			loanForm.style.backgroundSize = "contain";
+			// img = type[i];
+			// style = img.currentStyle || window.getComputedStyle(img, false)
+			// bi = style.backgroundImage.slice(4, -1).replace(/["']/g, "");
+			// loanForm.style.background = `url(${bi}) no-repeat`;
+			// loanForm.style.backgroundColor = "#fff";
+			// loanForm.style.backgroundSize = "contain";
 			// loanForm.style.transition = "bottom 800ms .2s";
 			// loanForm.style.transitionTimingFunction = "cubic-bezier(0.4,0, 1,1)";
 			let children = Array.from(type[i].children);
@@ -61,6 +62,13 @@ let applyBtn = document.getElementById("apply");
 
 let submit = document.querySelector('.submit_app');
 let data;
+window.onresize = () =>{
+	window.location.reload(true)
+}
+close_btn.onclick = (e) => {
+	loanForm.style.display = 'none'
+	loanForm.children[1].reset();
+}
 submit.onclick = (e) => {
 	postFormData('https://qwikcredit.herokuapp.com/api/v1/loans')
 	.then(data => {

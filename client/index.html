@@ -23,6 +23,7 @@
 				<li class="tab"><span class="border_bottom"><a href="./index.html"><h4>Home</h4></a></span></li>
 				<li class="tab"><span class="border_bottom"><a href="./history.html"><h4>Loan History</h4></a></span></li>
 				<li class="tab"><span class="border_bottom"><a href="./repayment.html"><h4>Repayment</h4></a></span></li>
+			    <li class="tab Logout"><h4>Logout</h4></li>
 			</ul>
 		</div>
 		<div class="section loan_type">
@@ -96,15 +97,20 @@
 			</ul>
 		</div>
 		<div class="loan_form" style="">
+			<div class="close_btn">
+				<img src="../client/assets/images/close.svg" alt="close"/>
+			</div>
 			<form>
 				<div class="loanType">
 					<input id="loanType" type="text" name="loanType" hidden>
 				</div>
 				<div class="tenor">
-					<input id="tenor" type="number" name="tenor" placeholder="Tenor">
+					<label for="tenor">Tenor</label>
+					<input id="tenor" type="number" name="tenor" placeholder="forexample: 2">
 				</div>
 				<div class="amount">
-					<input type="text" name="amount" placeholder="Amount">
+					<label for="amount">Amount</label>
+					<input id="amount" type="text" name="amount" placeholder="forexample: 1000">
 				</div>
 			</form>
 
