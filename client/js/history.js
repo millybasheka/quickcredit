@@ -9,8 +9,8 @@ function getRepays(url) {
 	}).then(response => response.json())
 }
 
-compiled.onclick = function(e) {
-	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
+
+getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
 		console.log(data)
 		clientsArea[0].innerHTML = ''
@@ -70,5 +70,4 @@ compiled.onclick = function(e) {
 	</li>
 	`)
 		}
-	})
 }
