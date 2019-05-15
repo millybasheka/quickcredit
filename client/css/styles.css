@@ -10,7 +10,13 @@ body{
 .app_name{
 	margin: 40px 0px 10px 0px;
 }
+.nodata{
+margin-left: auto;
 
+margin-right: auto;
+
+display: block;
+}
 .app_name h2{
 	font-weight: bold;
 	color: #fff;
