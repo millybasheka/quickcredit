@@ -1,5 +1,5 @@
 const clientsArea = Array.from(document.querySelectorAll('.list_loantype'))
-const children = Array.from(document.querySelector('.card').children)
+const children = Array.from(document.querySelector('.card').children).splice(4,4)
 function getRepays(url) {
 	return fetch(url, {
 	method: 'GET',
