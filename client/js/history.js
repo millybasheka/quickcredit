@@ -21,7 +21,7 @@ function getRepays(url) {
 				children[i].style.display = 'none'
 				
 			}
-			cardd.insertAdjacentHTML('beforeend','<img src="../client/assets/images/nodata.svg" alt="no data"/>')
+			cardd.insertAdjacentHTML('beforeend','<img class="nodata" src="../client/assets/images/nodata.svg" alt="no data"/>')
 		} else {
 		for (let i = 0; i < dat.length; i++){
 			clientsArea[1].insertAdjacentHTML('beforeend',
