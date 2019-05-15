@@ -1,4 +1,3 @@
-
 const clientsArea = Array.from(document.querySelectorAll('.list_loantype'))
 function getRepays(url) {
 	return fetch(url, {
@@ -9,8 +8,7 @@ function getRepays(url) {
 	}).then(response => response.json())
 }
 
-
-getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
+	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
 		console.log(data)
 		clientsArea[0].innerHTML = ''
@@ -70,4 +68,4 @@ getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	</li>
 	`)
 		}
-}
+	})
