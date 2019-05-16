@@ -10,10 +10,6 @@ function getRepays(url) {
 	}).then(response => response.json())
 }
 
-			for(let i = 0; i < children.length; i++){
-				children[i].style.display = 'none'
-				
-			}
 	getRepays('https://qwikcredit.herokuapp.com/api/v1/compiled')
 	.then(data => {
 		console.log(data)
@@ -28,11 +24,6 @@ function getRepays(url) {
 			}
 			cardd.insertAdjacentHTML('beforeend','<img class="nodata" src="../client/assets/images/nodata.svg" alt="no data"/>')
 		} else {
-			
-			for(let i = 0; i < children.length; i++){
-				children[i].style.display = 'block'
-				
-			}
 		for (let i = 0; i < dat.length; i++){
 			clientsArea[1].insertAdjacentHTML('beforeend',
 	`
