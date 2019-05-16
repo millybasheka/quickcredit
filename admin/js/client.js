@@ -24,6 +24,7 @@ async function patchUser(url) {
 function displayClients() {
 	getData('https://qwikcredit.herokuapp.com/api/v1/users')
 	.then(data => {
+		console.log(data)
 		if (Object.prototype.toString.call(data.data) === '[object Array]') {
 			const dat = data.data;
 			for (let i = 0; i < dat.length; i++) {
