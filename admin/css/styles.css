@@ -39,6 +39,7 @@ body{
 	border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
     border-radius: 8px;
+	outline:none;
     border: 2px solid #000;
 }
 .submit_app_{
@@ -53,7 +54,7 @@ body{
 	    padding: 5px;
     border: 2px solid #000;
     background: #000;
-  
+  outline:none;
     border-top-right-radius: 8px !important;
     border-bottom-right-radius: 8px !important;
     color: #fff;
