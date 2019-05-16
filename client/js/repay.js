@@ -7,7 +7,11 @@ submit.onclick = (e) => {
 	.then(data => {
 console.log(data)
 		if (data.status === 201) {
-			console.log(data)
+			success.textContent = "repayment successfull";
+			success.style.display = 'block'
+			setTimeout(function() {
+				errors.style.display = 'none'
+			}, 1500)
 		} else if (data.status === 422){
 			errors.textContent = data.message;
 			errors.style.display = 'block'
