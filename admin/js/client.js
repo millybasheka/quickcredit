@@ -55,6 +55,17 @@ function displayClients() {
 			
 			const status_value = document.querySelectorAll('.status_value');
 			verifyUser(status_value);
+			status_value.forEach(function(e) {
+								e.textContent = data.message
+				if (e.textContent === 'verified') {
+					e.style.backgroundColor = '#4CAF50'
+					e.parentElement.parentElement.parentElement.lastElementChild.style.display = 'none'
+				}
+
+				if (e.textContent === 'unverified') {
+					e.style.backgroundColor = '#F44336'
+				}
+			})
 
 		} else {
 			clientsArea.insertAdjacentHTML('beforeend', '<h4> No Data </h4');
