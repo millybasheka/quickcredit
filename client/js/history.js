@@ -22,9 +22,7 @@ function getRepays(url) {
 				children[i].style.display = 'display'
 				
 			}
-			cardd.insertAdjacentHTML('beforeend','<img class="nodata" src="../client/assets/images/nodata.svg" alt="no data"/>')
-		} else {
-		for (let i = 0; i < dat.length; i++){
+			for (let i = 0; i < dat.length; i++){
 			clientsArea[1].insertAdjacentHTML('beforeend',
 	`
 	<li class="clients-card">
@@ -77,5 +75,8 @@ function getRepays(url) {
 	</li>
 	`)
 		}
+		} else {
+			cardd.insertAdjacentHTML('beforeend','<img class="nodata" src="../client/assets/images/nodata.svg" alt="no data"/>')
+		
 		}
 	})
