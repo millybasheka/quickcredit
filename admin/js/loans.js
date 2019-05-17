@@ -5,6 +5,7 @@ const search = document.getElementById('search');
 const errors = document.querySelector('.errors');
 const success = document.querySelector('.success');
 const get_loan = document.getElementById('get_loan');
+const status_v = document.getElementById('.status_value')
 const loan_id = document.querySelector('.amount input[name = loan]');
 
 async function getData(url) {
@@ -57,6 +58,7 @@ function verifyLoan() {
 	const reject = document.querySelectorAll('#reject')
 	verify.forEach(function (l) {
 		l.onclick = function (e) {
+			console.log(e)
 			if (e.target.checked) {
 				let loan_id = e.target.parentElement.parentElement.parentElement.parentElement
 					.parentElement.children[0].firstElementChild.textContent;
