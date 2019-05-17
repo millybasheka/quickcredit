@@ -211,6 +211,7 @@ li.tab:active, .yes:active, .no:active, .checkmarker:active{
     position: absolute;
     top: 0;
     left: 0;
+	margin-top: 5px;
     height: 25px;
     width: 25px;
     border-radius: 50%;
