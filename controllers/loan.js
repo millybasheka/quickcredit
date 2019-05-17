@@ -169,7 +169,7 @@ const compiled = (req, res) => {
   const compiledRepays = [];
   const loans = [...newApplication];
   const repays = [...newRepayment];
-  if (loans.length === 0 || repays.length === 0) {
+  if (loans.length === 0 && repays.length === 0) {
     res.status(404).json({ status: 404, error: 'not found' });
     return;
   }
