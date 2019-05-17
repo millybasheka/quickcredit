@@ -249,7 +249,7 @@ li.tab:active, .yes:active, .no:active, .checkmarker:active{
 	background: red !important;
 }
 .search_btn{
-	    margin-top: -6px;
+	    margin-top: 0px;
     margin-left: 10px;
 }
 #search{
