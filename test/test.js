@@ -334,7 +334,6 @@ describe('All Routes', () => {
       .get('/api/v1/loans?status=approved&repaid=true')
       .set('Authorization', adminToken)
       .then((res) => {
-      console.log(res)
         expect(res.status).to.be.equal(200);
         expect(res.body).to.have.property('data');
         done();
