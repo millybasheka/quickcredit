@@ -65,6 +65,7 @@ function verifyLoan() {
 				patchLoan(`https://qwikcredit.herokuapp.com/api/v1/loans/${loan_id}`, 'approved')
 				.then(data => {
 					if (data.status === 200) {
+						wwindow.reload.true(true)
 	success.textContent = 'successfully Approved';
 			success.style.display = 'block'
 			setTimeout(function() {
