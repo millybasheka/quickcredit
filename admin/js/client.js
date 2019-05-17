@@ -85,6 +85,7 @@ function verifyUser(status_value) {
 								e.textContent = data.message
 
 			})
+				window.location.reload(true)
 			})
 			.catch(error => error);
 		}
