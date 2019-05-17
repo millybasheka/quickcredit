@@ -14,7 +14,6 @@ async function patchUser(url) {
 	const response = await fetch(url, {
 		method: 'PATCH',
 		headers: new Headers({
-			'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
 			'Authorization': localStorage.getItem('token')
 		})
 	});
