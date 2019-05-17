@@ -52,9 +52,27 @@ function displayClients() {
 				</li>
 				`)
 			}
-			verifyUser();
+			
 			const status_value = document.querySelectorAll('.status_value');
-			status_value.forEach(function(e) {
+			verifyUser(status_value);
+
+		} else {
+			clientsArea.insertAdjacentHTML('beforeend', '<h4> No Data </h4');
+		}
+	})
+	.catch(error => console.error(error));
+}
+
+function verifyUser(status_value) {
+	const yes = document.querySelectorAll('.yes');
+	yes.forEach(function (l) {
+		l.onclick = function (e) {
+			const email = e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent
+			console.log(email)
+			patchUser(`https://qwikcredit.herokuapp.com/api/v1/users/${email}/verify`)
+			.then(data => {
+							status_value.forEach(function(e) {
+								e.textContent = data.message
 				if (e.textContent === 'verified') {
 					e.style.backgroundColor = '#4CAF50'
 					e.parentElement.parentElement.parentElement.lastElementChild.style.display = 'none'
@@ -64,22 +82,6 @@ function displayClients() {
 					e.style.backgroundColor = '#F44336'
 				}
 			})
-		} else {
-			clientsArea.insertAdjacentHTML('beforeend', '<h4> No Data </h4');
-		}
-	})
-	.catch(error => console.error(error));
-}
-
-function verifyUser() {
-	const yes = document.querySelectorAll('.yes');
-	yes.forEach(function (l) {
-		l.onclick = function (e) {
-			const email = e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent
-			console.log(email)
-			patchUser(`https://qwikcredit.herokuapp.com/api/v1/users/${email}/verify`)
-			.then(data => {
-				console.log(data)
 			})
 			.catch(error => error);
 		}
