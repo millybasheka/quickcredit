@@ -17,7 +17,7 @@ function getRepays(url) {
 		clientsArea[1].innerHTML = ''
 		const dat = data.loans
 		const repay = data.repays
-		if(dat !== undefined || repay !== undefined){
+		if(dat !== undefined && repay !== undefined){
 			for(let i = 0; i < children.length; i++){
 				children[i].style.display = 'display'
 				
