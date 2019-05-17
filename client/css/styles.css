@@ -114,6 +114,7 @@ display: block;
     margin-left: 50px;
     background: #0284d7;
     font-weight: bold;
+	display: none;
 }
 .clients-card{
 	    cursor: pointer;
