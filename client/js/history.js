@@ -17,9 +17,9 @@ function getRepays(url) {
 		clientsArea[1].innerHTML = ''
 		const dat = data.loans
 		const repay = data.repays
-		if(dat === undefined || repay === undefined){
+		if(dat !== undefined || repay !== undefined){
 			for(let i = 0; i < children.length; i++){
-				children[i].style.display = 'none'
+				children[i].style.display = 'display'
 				
 			}
 			cardd.insertAdjacentHTML('beforeend','<img class="nodata" src="../client/assets/images/nodata.svg" alt="no data"/>')
