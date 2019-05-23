@@ -4,6 +4,9 @@ import bodyParser from 'body-parser';
 import users from '../routes/users';
 import admin from '../routes/admin';
 import loans from '../routes/loans';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 
 const app = express();
@@ -27,6 +30,6 @@ app.all('*', (_req, res) => {
     message: 'route doesnot exist',
   });
 });
-app.listen(PORT);
+app.listen(process.env.PORT || PORT);
 
 export default app;
