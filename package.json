@@ -15,9 +15,6 @@
     "start:dev": "cross-env ./node_modules/.bin/nodemon src/index.js --exec babel-node",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
   },
-  "engines": {
-    "node": ">=8"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elemanhillary/QuickCredit.git"
