@@ -9,7 +9,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "showcoverage": "start ./coverage/index.html",
-    "tables": "cross-env ./node_modules/.bin/nodemon ./model/QuickCredit_Db.js --exec babel-node",
+    "tables": "cross-env ./node_modules/.bin/babel-node ./model/QuickCredit_Db.js",
     "serve": "node ./index.js",
     "start": "cross-env ./node_modules/.bin/babel-node src/index.js",
     "start:dev": "cross-env ./node_modules/.bin/nodemon src/index.js --exec babel-node",
