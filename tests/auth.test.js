@@ -37,6 +37,7 @@ describe('Test Auth Middleware', () => {
   it('request should contain user info if good token was provided', () => {
     request.headers = {};
     request.headers.authorization = jwt.sign({ id: 1 }, process.env.secret);
+    console.log(req.decoded)
     checkToken(request, response, next);
     expect(request.decoded).to.have.property('id');
     expect(request.decoded.id).to.be.equal(1);
