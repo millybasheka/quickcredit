@@ -1,10 +1,11 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import checkToken from '../middleware/isAuth';
 
 const { expect } = chai;
-
+dotenv.config();
 
 describe('Test Auth Middleware', () => {
   let request;
