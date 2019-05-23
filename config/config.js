@@ -5,7 +5,7 @@ dotenv.config();
 let connectionString;
 
 if (process.env.NODE_ENV === 'production') {
-  connectionString = process.env.DATABASE_URL;
+  connectionString = process.env.ELEPHANT;
 }
 if (process.env.NODE_ENV === 'development') {
   connectionString = process.env.development;
