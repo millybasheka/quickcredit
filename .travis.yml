@@ -21,5 +21,4 @@ after_success:
 services:
   - postgresql
 env:
-  - test = postgres://postgres:''@localhost:5432/travis_ci_test
-  - secret = qazwsxedcrfvtgb
+  - test = postgres://postgres:''@localhost:5432/travis_ci_test secret = qazwsxedcrfvtgb
