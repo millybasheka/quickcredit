@@ -4,13 +4,13 @@ import pg from 'pg';
 dotenv.config();
 let connectionString;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV || 'production') {
   connectionString = process.env.production;
 }
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV || 'development') {
   connectionString = process.env.development;
 }
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV || 'test') {
   connectionString = process.env.test;
 }
 
