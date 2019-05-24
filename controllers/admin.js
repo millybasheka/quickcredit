@@ -80,8 +80,8 @@ export const getLoan = async (req, res) => {
 export const verifyLoan = async (req, res) => {
   const { error } = validate.validateLoanStatus(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
