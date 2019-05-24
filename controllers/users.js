@@ -6,8 +6,8 @@ import Auth from '../util/auth';
 export const signup = async (req, res) => {
   const { error } = validate.validateSignup(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
@@ -24,7 +24,14 @@ export const signup = async (req, res) => {
     res.status(201).json({
       status: 201,
       Created: true,
-      data: rows[0],
+      data: {
+        id: rows[0].id,
+        firstname: rows[0].firstname.trim(),
+        lastname: rows[0].lastname,
+        email: rows[0].email,
+        homeaddress: rows[0].homeaddress,
+        workaddress: rows[0].workaddress,
+      },
     });
   } catch (e) {
     if (e.detail.match('exists').length > 0) {
@@ -44,8 +51,8 @@ export const signup = async (req, res) => {
 export const signin = async (req, res) => {
   const { error } = validate.validateLogin(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
@@ -66,7 +73,14 @@ export const signin = async (req, res) => {
         status: 200,
         Success: authBoolean,
         token,
-        data: rows[0],
+        data: {
+          id: rows[0].id,
+          firstname: rows[0].firstname.trim(),
+          lastname: rows[0].lastname,
+          email: rows[0].email,
+          homeaddress: rows[0].homeaddress,
+          workaddress: rows[0].workaddress,
+        },
       });
     } else {
       res.status(401).json({
