@@ -31,7 +31,7 @@ class validate {
       loanType: Joi.string().trim().required(),
       tenor: Joi.number().integer().min(1).max(12)
         .required(),
-      amount: Joi.number().integer().required(),
+      amount: Joi.number().min(0).required(),
     });
     return Joi.validate(loan, schema);
   }
