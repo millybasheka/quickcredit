@@ -4,8 +4,8 @@ import validate from '../util/validation';
 export const loanApply = async (req, res) => {
   const { error } = validate.validateLoan(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
@@ -101,8 +101,8 @@ export const repay = async (req, res) => {
   let rows;
   const { error } = validate.validateAmount(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
@@ -144,8 +144,8 @@ export const adminrepay = async (req, res) => {
   let rows;
   const { error } = validate.validateAdminRepay(req.body);
   if (error) {
-    res.status(422).json({
-      status: 422,
+    res.status(400).json({
+      status: 400,
       message: error.details[0].message,
     });
   }
