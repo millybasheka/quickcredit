@@ -54,7 +54,7 @@ describe('All Routes', () => {
         pin: '123',
       })
       .then((res) => {
-        expect(res.status).to.be.equal(422);
+        expect(res.status).to.be.equal(400);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status');
         done();
@@ -97,7 +97,7 @@ describe('All Routes', () => {
       .post('/api/v2/auth/signin')
       .send({ email })
       .then((res) => {
-        expect(res.body.status).to.be.equal(422);
+        expect(res.body.status).to.be.equal(400);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('status');
         done();
@@ -195,7 +195,7 @@ describe('All Routes', () => {
       .set('Authorization', token)
       .send({ amount: 13000.20, tenor: 3 })
       .then((res) => {
-        expect(res.status).to.be.equal(422);
+        expect(res.status).to.be.equal(400);
         expect(res.body).to.have.property('message');
         done();
       })
