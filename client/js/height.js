@@ -19,6 +19,6 @@ tab.forEach(function(e){
 })
 
 logout.onclick = () => {
-	window.location.href="https://elemanhillary.github.io/QuickCredit/auth_pages/"
+	window.location.href="https://millybasheka.github.io/quickcredit/auth_pages"
 	localStorage.removeItem('token')
 }
