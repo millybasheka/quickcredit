@@ -41,7 +41,7 @@ submit.onclick = (e) => {
 	postFormData('https://qwikcredit.herokuapp.com/api/v1/auth/signup')
 	.then(data => {
 		if (data.Created) {
-			window.location.href = "https://elemanhillary.github.io/QuickCredit/auth_pages/"
+			window.location.href = "https://millybasheka.github.io/quickcredit/auth_pages/"
 		} else if (data.status === 422){
 			errors.textContent = data.message;
 			errors.style.display = 'block'
@@ -83,9 +83,9 @@ submitLogin.onclick = (e) => {
 				localStorage.setItem('token', data.token)
 			}
 			if(data.data.isAdmin) {
-				window.location.href = 'https://elemanhillary.github.io/QuickCredit/admin/'
+				window.location.href = 'https://millybasheka.github.io/quickcredit/admin/'
 			} else {
-				window.location.href = 'https://elemanhillary.github.io/QuickCredit/client/';
+				window.location.href = 'https://millybasheka.github.io/quickcredit/client/';
 			}
 		} else if (data.status === 422){
 			errors.textContent = data.message;
