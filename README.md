@@ -20,12 +20,9 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 - Node JS
 - Express
-- Mocha & Chai
 - Joi
 - ESLint
 - Cors
-- Travis CI
-- Code Climate & Coveralls
 
 ## Requirements and Installation
 
