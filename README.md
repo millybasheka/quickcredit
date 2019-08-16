@@ -39,12 +39,6 @@ npm install
 npm start
 ```
 
-## Testing
-
-```sh
-npm run test
-```
-
 ## API-ENDPOINTS
 
 - V1
