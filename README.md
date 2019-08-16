@@ -1,8 +1,4 @@
 # QUICK CREDIT
-[![Build Status](https://travis-ci.org/elemanhillary/QuickCredit.svg?branch=ft-quickcredit-api-2327175)](https://travis-ci.org/elemanhillary/QuickCredit)
-[![Coverage Status](https://coveralls.io/repos/github/elemanhillary/QuickCredit/badge.svg?branch=ft-quickcredit-api-2327175&service=github)](https://coveralls.io/github/elemanhillary/QuickCredit?branch=ft-quickcredit-api-2327175)
-[![Maintainability](https://api.codeclimate.com/v1/badges/00385e82757e320340d8/maintainability)](https://codeclimate.com/github/elemanhillary/QuickCredit/maintainability)
-
 Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
 
 ## Required Features
@@ -40,8 +36,8 @@ To run:
 
 - Make sure to run admin and user in different browsers
 ```sh
-git clone <https://github.com/elemanhillary/QuickCredit.git>
-cd QuickCredit
+git clone <https://github.com/millybasheka/quickcredit.git>
+cd quickcredit
 npm install
 npm start
 ```
@@ -81,13 +77,10 @@ npm run test
 `- POST /api/v1/loans/<:loan-id>/repayments Create a loan repayment record`
 
 
-## Pivotal Tracker stories
-
-[https://www.pivotaltracker.com/n/projects/2327175](https://www.pivotaltracker.com/n/projects/2327175)
 
 ## Template UI
 
-You can see a hosted version of the template at [https://elemanhillary.github.io/QuickCredit/](https://elemanhillary.github.io/QuickCredit/)
+You can see a hosted version of the template at [https://millybasheka.github.io/quickcredit/](https://millybasheka.github.io/quickcredit/)
 
 ## API
 
@@ -100,5 +93,5 @@ The API is currently in version 1 (v1) and is hosted at
 
 ## Author
 
-Eleman Hillary Barnabas
+Milly Basheka
 
