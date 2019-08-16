@@ -24,12 +24,9 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 - Node JS
 - Express
-- Mocha & Chai
 - Joi
 - ESLint
 - Cors
-- Travis CI
-- Code Climate & Coveralls
 
 ## Requirements and Installation
 
@@ -40,16 +37,10 @@ To run:
 
 - Make sure to run admin and user in different browsers
 ```sh
-git clone <https://github.com/elemanhillary/QuickCredit.git>
+git clone <https://github.com/millybasheka/quickcredit.git>
 cd QuickCredit
 npm install
 npm start
-```
-
-## Testing
-
-```sh
-npm run test
 ```
 
 ## API-ENDPOINTS
@@ -81,13 +72,9 @@ npm run test
 `- POST /api/v1/loans/<:loan-id>/repayments Create a loan repayment record`
 
 
-## Pivotal Tracker stories
-
-[https://www.pivotaltracker.com/n/projects/2327175](https://www.pivotaltracker.com/n/projects/2327175)
-
 ## Template UI
 
-You can see a hosted version of the template at [https://elemanhillary.github.io/QuickCredit/](https://elemanhillary.github.io/QuickCredit/)
+You can see a hosted version of the template at [https://millybasheka.github.io/quickcredit/](https://millybasheka.github.io/quickcredit/)
 
 ## API
 
@@ -100,5 +87,5 @@ The API is currently in version 1 (v1) and is hosted at
 
 ## Author
 
-Eleman Hillary Barnabas
+MIlly Basheka
 
